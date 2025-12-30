@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batman</title>
+
+<style>
+body {
+  background: #000;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* HERO SECTION */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hero-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #333;
+  box-shadow: 0 0 40px rgba(0,0,0,0.9);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin: 0 0 15px 0;
+}
+
+.intro-text {
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  padding: 60px 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* LIST CONTAINER */
+.list {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #0b0b0b;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 0 80px rgba(0,0,0,.9);
+}
+
+/* ITEM */
+.item {
+  background: linear-gradient(180deg,#111,#090909);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.item:hover {
+  background: #141414;
+}
+
+.arrow {
+  opacity: .6;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* PANEL */
+.panel {
+  width: 90%;
+  max-width: 800px;
+  height: 80vh;
+  background: #101010;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 100px rgba(0,0,0,1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* PANEL HEADER */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.close {
+  font-size: 28px;
+  cursor: pointer;
+  opacity: .6;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+/* SCROLL CONTENT */
+.panel-content {
+  overflow-y: auto;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* Preformatted content styling */
+.pre-content {
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #ddd;
+  background: #0a0a0a;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO SECTION: Batman profile -->
+<div class="hero">
+  <img src="https://files.catbox.moe/tv080k.jpg" alt="Batman" class="hero-img">
+  <h1>Batman</h1>
+  <div class="intro-text">
+    Catching Pedophiles who think they can hide from me.
+  </div>
+</div>
+
+<!-- MAIN CONTENT: Clickable list -->
+<div class="main-content">
+  <div class="list">
+    <div class="item" onclick="openPanel('entry1')">
+      <span>k506043 - larper</span>
+      <span class="arrow">›</span>
+    </div>
+
+    <div class="item" onclick="openPanel('entry2')">
+      <span>Glorious - wanna be doxxer</span>
+      <span class="arrow">›</span>
+    </div>
+
+    <div class="item" onclick="openPanel('entry3')">
+      <span>John Smith - pedo</span>
+      <span class="arrow">›</span>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY WITH PANEL -->
+<div class="overlay" id="overlay">
+  <div class="panel">
+    <div class="panel-header">
+      <h2 id="panelTitle"></h2>
+      <div class="close" onclick="closePanel()">✕</div>
+    </div>
+    <div class="panel-content" id="panelText"></div>
+  </div>
+</div>
+
+<script>
+const data = {
+  entry1: {
+    title: "k506043",
+    text: `
+    <p style="text-align:center; margin-bottom:20px;">[SECTION]</p>
+    <pre class="pre-content">hello m6 known as k506043 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣷⢸⣿⣿⡜⢯⣷⡌⡻⣿⣿⣿⣆⢈⠻⠿⢿⣿⣿⣿⣿⣿⣿⣷⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡁⢳⣿⣿⣿⣿⣿⣿⡜⣿⣿⣧⢀⢻⣷⠰⠈⢿⣿⣿⣧⢣⠉⠑⠪⢙⠿⠿⠿⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣱⡇⡞⣿⣿⣿⣿⣿⣿⡇⣿⣿⡏⡄⣧⠹⡇⠧⠈⢻⣿⣿⡇⢧⢢⠀⠀⠑⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣇⢃⢿⣿⣿⣿⣿⣿⣷⣿⣿⠇⢃⣡⣤⡹⠐⣿⣀⢻⣿⣿⢸⡎⠳⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣾⣿⣿⠘⡸⣿⣿⣿⣿⣿⣿⣿⡿⣰⣿⣿⢟⡷⠈⠋⠃⠎⢿⣿⡏⣿⠀⠘⢆⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡐⢹⣿⣿⡐⢡⢹⣿⣿⣿⣿⡏⣿⢣⣿⣿⡑⠁⠔⠀⠉⠉⠢⡘⣿⡇⣿⡇⠀⡀⠡⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠘⣿⣿⣇⠇⢣⢻⣿⣿⣿⡇⢇⣾⣿⣿⡆⢸⣤⡀⠚⢂⠀⢡⢿⡇⣿⡇⠀⢿⠀⠀⠄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠠⠹⣿⣿⡘⣆⢣⠻⣿⣿⢈⣾⣿⣿⣿⣶⣸⣏⢀⣬⣋⡼⣠⢸⢹⣿⡇⢠⣼⠙⡄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡇⠁⠹⣿⣇⠹⡃⠃⠙⡇⠘⢿⣿⣿⣿⣿⣿⣏⣓⣉⣭⣴⣿⠘⢸⣿⠁⠘⠋⠀⠹⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⠀⠀⠈⢿⣇⠂⣷⠄⠐⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢠⢸⡏⠀⢀⣠⣴⣾⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠙⠆⠈⠢⠲⠥⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡞⣸⠁⠀⢸⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠄⠃⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⡏⠹⣿⣿⡿⠫⠊⠀⠀⠀⣶⠀⢻⣿⣿⣿⣿⡿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠻⠿⠿⠿⢋⠀⠀⠀⠀⢀⣼⣿⡆⠈⣿⣿⣿⡟⣱⡷⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢁⣁⡀⠨⣛⠿⠶⠄⢀⣠⣾⣿⣿⣷⠀⢹⣿⡟⣴⠈⢃⣶⠔⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⡄⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠈⣿⣿⡿⠀⡀⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢙⠻⣿⣿⢀⠙⠻⠿⣿⣿⣿⣿⣿⣿⡇⠁⣿⠟⡀⠈⣧⢰⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠿⠴⠮⣥⠻⢧⣤⣄⣀⡉⢩⣭⣍⣃⣀⣩⠎⢀⣼⠉⣼⡯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠁⣛⠓⢒⣒⣢⡭⢁⡈⠿⠿⠟⠹⠛⠁⠀⠀⠀⠰⠃⠂⠀⠀⠀ 
+ 
+ 
+ /$$    /$$ /$$             /$$     /$$                    
+| $$   | $$|__/            | $$    |__/                    
+| $$   | $$ /$$  /$$$$$$$ /$$$$$$   /$$ /$$$$$$/$$$$       
+|  $$ / $$/| $$ /$$_____/|_  $$_/  | $$| $$_  $$_  $$      
+ \  $$ $$/ | $$| $$        | $$    | $$| $$ \ $$ \ $$      
+  \  $$$/  | $$| $$        | $$ /$$| $$| $$ | $$ | $$      
+   \  $/   | $$|  $$$$$$$  |  $$$$/| $$| $$ | $$ | $$      
+    \_/    |__/ \_______/   \___/  |__/|__/ |__/ |__/      
+                                                           
+                                                           
+                                                           
+k506043-aka-m6
+Discord ID : 1260127104763170837
+Discord Username: k506043
+Banner : https://cdn.discordapp.com/banners/1260127104763170837/a_58cf4ecee9c16786aea5bb1a9a196635.gif?size=1024
+PFP : https://cdn.discordapp.com/avatars/1260127104763170837/68473635ae518a91caa75175e8d9be34.png?size=1024
+
+
+ /$$$$$$ /$$$$$$$        /$$$$$$            /$$$$$$         
+|_  $$_/| $$__  $$      |_  $$_/           /$$__  $$        
+  | $$  | $$  \ $$        | $$   /$$$$$$$ | $$  \__//$$$$$$ 
+  | $$  | $$$$$$$/        | $$  | $$__  $$| $$$$   /$$__  $$
+  | $$  | $$____/         | $$  | $$  \ $$| $$_/  | $$  \ $$
+  | $$  | $$              | $$  | $$  | $$| $$    | $$  | $$
+ /$$$$$$| $$             /$$$$$$| $$  | $$| $$    |  $$$$$$/
+|______/|__/            |______/|__/  |__/|__/     \______/ 
+                                                            
+                                                            
+                                                            
+Country:United States
+
+State/Region:Georgia
+
+City:Atlanta
+
+Ip 98.251.41.30
+Pinging 98.251.41.30 with 32 bytes of data:
+Reply from 98.251.41.30: bytes=32 time=26ms TTL=51
+Reply from 98.251.41.30: bytes=32 time=25ms TTL=51
+Reply from 98.251.41.30: bytes=32 time=24ms TTL=51
+IP is still pingable
+
+# IP Lookup: 98.251.41.30
+Lookup Time
+10:13 PM , Wednesday, July 02, 2025
+IP
+98.251.41.30
+Hostname
+N/A
+City
+Lithonia
+District / County
+DeKalb County
+State Code
+N/A
+State / Province
+Georgia
+Country Name
+United States
+Country Name Official
+United States
+Country Capital
+Washington, D.C.
+Country Code (ISO-2)
+US
+Country Code (ISO-3)
+USA
+Country Flag
+🇺🇸
+Coordinates
+33.70409, -84.13074
+Continent Name
+North America
+Continent Code
+NA
+Geoname ID
+4224603
+ZipCode
+30058
+Is EU?
+False
+Network Info
+Network Info
+ASN: N/A
+Organization: Comcast Cable Communications, LLC
+Country: United States
+Type: ISP
+Regional Overview
+Regional Overview
+Calling Code: +N/A
+Languages: en-US,es-US,haw,fr
+Country TLD: ..us
+Security Info
+Security Info
+Threat Score: 0
+Is Tor: False
+Is Proxy: False
+Proxy Type: N/A
+Is Anonymous: False
+Is Known Attacker: False
+Is Bot: False
+Is Spam: False
+Is Cloud Provider: False
+Cloud Provider: N/A
+Abuse Info
+Abuse Info
+Route: 98.251.41.30/17
+Country: United States
+Handle: N/A
+Name: Network Abuse and Policy Observance
+Organization: Comcast Cable Communications, LLC
+Emails: abuse@comcast.net
+Phone Numbers: +1-888-565-4329
+TimeZone Info
+TimeZone Info
+Name: America/New_York
+Offset: -5
+Offset With DST: -4
+Current Time: 2025-07-02 16:13:36.566-0400
+Is DST: True
+
+
+  /$$$$$$    /$$     /$$                                 /$$$$$$            /$$$$$$         
+ /$$__  $$  | $$    | $$                                |_  $$_/           /$$__  $$        
+| $$  \ $$ /$$$$$$  | $$$$$$$   /$$$$$$   /$$$$$$         | $$   /$$$$$$$ | $$  \__//$$$$$$ 
+| $$  | $$|_  $$_/  | $$__  $$ /$$__  $$ /$$__  $$        | $$  | $$__  $$| $$$$   /$$__  $$
+| $$  | $$  | $$    | $$  \ $$| $$$$$$$$| $$  \__/        | $$  | $$  \ $$| $$_/  | $$  \ $$
+| $$  | $$  | $$ /$$| $$  | $$| $$_____/| $$              | $$  | $$  | $$| $$    | $$  | $$
+|  $$$$$$/  |  $$$$/| $$  | $$|  $$$$$$$| $$             /$$$$$$| $$  | $$| $$    |  $$$$$$/
+ \______/    \___/  |__/  |__/ \_______/|__/            |______/|__/  |__/|__/     \______/ 
+                                                                                            
+                                                                                            
+                                                                                            
+"results": {
+            "0432_FLING_COM_39M_DATING_2011": [
+                {
+                    "username": "beemckoy42",
+                    "email": "beemckoy@gmail.com",
+                    "lastip": "98.251.41.30",
+                    "hash": "bc88afd06e0dae48f333557054cb7720",
+                    "password": "phone16222",
+                    "_domain": "gmail.com",
+                    "created": "2009-11-12 21:55:10",
+                    "birthdate": "1989-11-04",
+                    "gender": "MAN"
+                },
+                {
+                    "username": "marquis.williams090115",
+                    "email": "marquis.williams0901@gmail.com",
+                    "lastip": "98.251.41.30",
+                    "hash": "d76615bda9457e0ef850afd73ceeb91d",
+                    "password": "u7uIpxjYp5",
+                    "_domain": "gmail.com",
+                    "created": "2009-12-16 19:08:16",
+                    "birthdate": "1977-01-06",
+                    "gender": "MAN"
+                },
+                {
+                    "username": "cflywalker00",
+                    "email": "cflywalker@yahoo.com",
+                    "lastip": "98.251.41.30",
+                    "hash": "12FpYJMhiV2DzzFF7tuYHjGNing7954dA7",
+                    "password": "shark50268",
+                    "_domain": "yahoo.com",
+                    "created": "2011-02-02 00:28:18",
+                    "birthdate": "1984-02-14",
+                    "gender": "MAN"
+                }
+            ]
+        }
+    }
+
+ /$$$$$$$            /$$             /$$     /$$                              
+| $$__  $$          | $$            | $$    |__/                              
+| $$  \ $$  /$$$$$$ | $$  /$$$$$$  /$$$$$$   /$$ /$$    /$$ /$$$$$$   /$$$$$$$
+| $$$$$$$/ /$$__  $$| $$ |____  $$|_  $$_/  | $$|  $$  /$$//$$__  $$ /$$_____/
+| $$__  $$| $$$$$$$$| $$  /$$$$$$$  | $$    | $$ \  $$/$$/| $$$$$$$$|  $$$$$$ 
+| $$  \ $$| $$_____/| $$ /$$__  $$  | $$ /$$| $$  \  $$$/ | $$_____/ \____  $$
+| $$  | $$|  $$$$$$$| $$|  $$$$$$$  |  $$$$/| $$   \  $/  |  $$$$$$$ /$$$$$$$/
+|__/  |__/ \_______/|__/ \_______/   \___/  |__/    \_/    \_______/|_______/ 
+                                                                              
+                                                                              
+  • Miriam B Almond                                                                            
+  • Lonnie Gene Almond
+  • Sarah Jane Stanford 
+  • Anthony Bernard Almond          
+  • Lonnie Gene Almond
+  • Stephon Gebeta Stanford                                                                                                                                                          </pre>
+    `
+  },
+  entry2: {
+    title: "Glorious wanna be doxxer",
+    text: `<pre class="pre-content">0x1 Welcome
+0x2 Vicitm
+0x3 IP Info
+0x4 Address
+0x5⠀Breached Data
+0x6 Credits
+
+0x1
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀hello 𝖌𝖑𝖔𝖗𝖚𝖆𝖘 welcome, to this paste if you see it.
+             ⠀⣾⣿⣿⣿⣿⣷⢸⣿⣿⡜⢯⣷⡌⡻⣿⣿⣿⣆⢈⠻⠿⢿⣿⣿⣿⣿⣿⣿⣷⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡁⢳⣿⣿⣿⣿⣿⣿⡜⣿⣿⣧⢀⢻⣷⠰⠈⢿⣿⣿⣧⢣⠉⠑⠪⢙⠿⠿⠿⠿⠿⠿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣱⡇⡞⣿⣿⣿⣿⣿⣿⡇⣿⣿⡏⡄⣧⠹⡇⠧⠈⢻⣿⣿⡇⢧⢢⠀⠀⠑⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣇⢃⢿⣿⣿⣿⣿⣿⣷⣿⣿⠇⢃⣡⣤⡹⠐⣿⣀⢻⣿⣿⢸⡎⠳⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣾⣿⣿⠘⡸⣿⣿⣿⣿⣿⣿⣿⡿⣰⣿⣿⢟⡷⠈⠋⠃⠎⢿⣿⡏⣿⠀⠘⢆⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡐⢹⣿⣿⡐⢡⢹⣿⣿⣿⣿⡏⣿⢣⣿⣿⡑⠁⠔⠀⠉⠉⠢⡘⣿⡇⣿⡇⠀⡀⠡⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠘⣿⣿⣇⠇⢣⢻⣿⣿⣿⡇⢇⣾⣿⣿⡆⢸⣤⡀⠚⢂⠀⢡⢿⡇⣿⡇⠀⢿⠀⠀⠄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠠⠹⣿⣿⡘⣆⢣⠻⣿⣿⢈⣾⣿⣿⣿⣶⣸⣏⢀⣬⣋⡼⣠⢸⢹⣿⡇⢠⣼⠙⡄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡇⠁⠹⣿⣇⠹⡃⠃⠙⡇⠘⢿⣿⣿⣿⣿⣿⣏⣓⣉⣭⣴⣿⠘⢸⣿⠁⠘⠋⠀⠹⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⠀⠀⠈⢿⣇⠂⣷⠄⠐⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢠⢸⡏⠀⢀⣠⣴⣾⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠙⠆⠈⠢⠲⠥⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡞⣸⠁⠀⢸⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠄⠃⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⡏⠹⣿⣿⡿⠫⠊⠀⠀⠀⣶⠀⢻⣿⣿⣿⣿⡿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠻⠿⠿⠿⢋⠀⠀⠀⠀⢀⣼⣿⡆⠈⣿⣿⣿⡟⣱⡷⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢁⣁⡀⠨⣛⠿⠶⠄⢀⣠⣾⣿⣿⣷⠀⢹⣿⡟⣴⠈⢃⣶⠔⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⡄⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠈⣿⣿⡿⠀⡀⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢙⠻⣿⣿⢀⠙⠻⠿⣿⣿⣿⣿⣿⣿⡇⠁⣿⠟⡀⠈⣧⢰⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠿⠴⠮⣥⠻⢧⣤⣄⣀⡉⢩⣭⣍⣃⣀⣩⠎⢀⣼⠉⣼⡯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠁⣛⠓⢒⣒⣢⡭⢁⡈⠿⠿⠟⠹⠛⠁⠀⠀⠀⠰⠃⠂⠀⠀
+Hello, Jadies and Lentlemen Today im introducing 𝖌𝖑𝖔𝖗𝖚𝖆𝖘 aka wanna be ratter/doxxer
+
+0x2 
+ /$$    /$$ /$$             /$$     /$$                    
+| $$   | $$|__/            | $$    |__/                    
+| $$   | $$ /$$  /$$$$$$$ /$$$$$$   /$$ /$$$$$$/$$$$       
+|  $$ / $$/| $$ /$$_____/|_  $$_/  | $$| $$_  $$_  $$      
+ \  $$ $$/ | $$| $$        | $$    | $$| $$ \ $$ \ $$      
+  \  $$$/  | $$| $$        | $$ /$$| $$| $$ | $$ | $$      
+   \  $/   | $$|  $$$$$$$  |  $$$$/| $$| $$ | $$ | $$      
+    \_/    |__/ \_______/   \___/  |__/|__/ |__/ |__/      
+ 𝖌𝖑𝖔𝖗𝖚𝖆𝖘. - Glorious - ctrlaltelite._                                                          
+ Old Username : Dj ...      
+Discord ID : 756388594041618463
+account made: September 18th 2020
+
+Ip Address: 62.45.33.10
+IP Address #2: 62.45.33.166
+pingable? : NO
+Fivem ID : 16137422
+Fivem Ban License : license:abe292f97aa741116aa7e0bc50215460c24661cc
+Date : 2025-02-25
+
+
+0x3 
+ /$$$$$$ /$$$$$$$        /$$$$$$            /$$$$$$         
+|_  $$_/| $$__  $$      |_  $$_/           /$$__  $$        
+  | $$  | $$  \ $$        | $$   /$$$$$$$ | $$  \__//$$$$$$ 
+  | $$  | $$$$$$$/        | $$  | $$__  $$| $$$$   /$$__  $$
+  | $$  | $$____/         | $$  | $$  \ $$| $$_/  | $$  \ $$
+  | $$  | $$              | $$  | $$  | $$| $$    | $$  | $$
+ /$$$$$$| $$             /$$$$$$| $$  | $$| $$    |  $$$$$$/
+|______/|__/            |______/|__/  |__/|__/     \______/ 
+                                                            
+     
+IP Details For: 62.45.33.10
+Decimal:1043144970
+Hostname:host-zn.cgnat-a.v4.dfn.nl
+ASN:15435
+ISP:DELTA Fiber Nederland B.V.
+Services:None detected
+Country:Netherlands (Kingdom of the)
+State/Region:Noord-Holland
+City:Amsterdam
+Latitude:52.3785 (52° 22′ 42.61″ N)
+Longitude:4.9000 (4° 53′ 59.93″ E)
+Country: Netherlands
+City: Amsterdam
+Coordinates
+Latitude: 52.3702157
+Longitude: 4.8951679
+Link: https://www.google.com/maps?q=52.3702157,4.8951679
+Country Info
+Capital: Amsterdam
+Calling Code: 31
+Continent Info
+Name: Europe
+Code: EU
+Connection Info
+ISP: Delta Fiber Nederland B.V.
+Org: KABELFOON
+Timezone Info
+Current Time: 2025-10-10T02:49:28+02:00
+Offset: 7200
+Open Ports
+No open ports found.
+
+
+0x4 
+  /$$$$$$        /$$       /$$                                       
+ /$$__  $$      | $$      | $$                                       
+| $$  \ $$  /$$$$$$$  /$$$$$$$  /$$$$$$   /$$$$$$   /$$$$$$$ /$$$$$$$
+| $$$$$$$$ /$$__  $$ /$$__  $$ /$$__  $$ /$$__  $$ /$$_____//$$_____/
+| $$__  $$| $$  | $$| $$  | $$| $$  \__/| $$$$$$$$|  $$$$$$|  $$$$$$ 
+| $$  | $$| $$  | $$| $$  | $$| $$      | $$_____/ \____  $$\____  $$
+| $$  | $$|  $$$$$$$|  $$$$$$$| $$      |  $$$$$$$ /$$$$$$$//$$$$$$$/
+|__/  |__/ \_______/ \_______/|__/       \_______/|_______/|_______/ 
+                                                                     
+                                                                     
+                                                                     
+address De Waarden 339 ( Netherlands)
+
+
+ /$$$$$$$                      /$$             /$$                                         /$$       /$$$$$$$$                         /$$ /$$                                           /$$$$$$ /$$$$$$$ 
+| $$__  $$                    |__/            | $$                                        | $$      | $$_____/                        |__/| $$                                          |_  $$_/| $$__  $$
+| $$  \ $$  /$$$$$$   /$$$$$$  /$$  /$$$$$$$ /$$$$$$    /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$      | $$       /$$$$$$/$$$$   /$$$$$$  /$$| $$  /$$$$$$$        /$$$$$$  /$$$$$$$         | $$  | $$  \ $$
+| $$$$$$$/ /$$__  $$ /$$__  $$| $$ /$$_____/|_  $$_/   /$$__  $$ /$$__  $$ /$$__  $$ /$$__  $$      | $$$$$   | $$_  $$_  $$ |____  $$| $$| $$ /$$_____/       /$$__  $$| $$__  $$        | $$  | $$$$$$$/
+| $$__  $$| $$$$$$$$| $$  \ $$| $$|  $$$$$$   | $$    | $$$$$$$$| $$  \__/| $$$$$$$$| $$  | $$      | $$__/   | $$ \ $$ \ $$  /$$$$$$$| $$| $$|  $$$$$$       | $$  \ $$| $$  \ $$        | $$  | $$____/ 
+| $$  \ $$| $$_____/| $$  | $$| $$ \____  $$  | $$ /$$| $$_____/| $$      | $$_____/| $$  | $$      | $$      | $$ | $$ | $$ /$$__  $$| $$| $$ \____  $$      | $$  | $$| $$  | $$        | $$  | $$      
+| $$  | $$|  $$$$$$$|  $$$$$$$| $$ /$$$$$$$/  |  $$$$/|  $$$$$$$| $$      |  $$$$$$$|  $$$$$$$      | $$$$$$$$| $$ | $$ | $$|  $$$$$$$| $$| $$ /$$$$$$$/      |  $$$$$$/| $$  | $$       /$$$$$$| $$      
+|__/  |__/ \_______/ \____  $$|__/|_______/    \___/   \_______/|__/       \_______/ \_______/      |________/|__/ |__/ |__/ \_______/|__/|__/|_______/        \______/ |__/  |__/      |______/|__/      
+                     /$$  \ $$                                                                                                                                                                            
+                    |  $$$$$$/                                                                                                                                                                            
+                     \______/                                                                                                                                                                             
+
+pcattel@caiway.nl
+nouhailagirl@hotmail.com
+wazup89@gmail.com
+e.g.mcgregor@gmail.com
+daphnekorff@live.nl
+feerce@gmail.com
+
+Nicknames
+
+Feercey
+
+0x5⠀
+ /$$$$$$$                                          /$$                       /$$       /$$$$$$            /$$$$$$         
+| $$__  $$                                        | $$                      | $$      |_  $$_/           /$$__  $$        
+| $$  \ $$  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$| $$$$$$$   /$$$$$$   /$$$$$$$        | $$   /$$$$$$$ | $$  \__//$$$$$$ 
+| $$$$$$$  /$$__  $$ /$$__  $$ |____  $$ /$$_____/| $$__  $$ /$$__  $$ /$$__  $$        | $$  | $$__  $$| $$$$   /$$__  $$
+| $$__  $$| $$  \__/| $$$$$$$$  /$$$$$$$| $$      | $$  \ $$| $$$$$$$$| $$  | $$        | $$  | $$  \ $$| $$_/  | $$  \ $$
+| $$  \ $$| $$      | $$_____/ /$$__  $$| $$      | $$  | $$| $$_____/| $$  | $$        | $$  | $$  | $$| $$    | $$  | $$
+| $$$$$$$/| $$      |  $$$$$$$|  $$$$$$$|  $$$$$$$| $$  | $$|  $$$$$$$|  $$$$$$$       /$$$$$$| $$  | $$| $$    |  $$$$$$/
+|_______/ |__/       \_______/ \_______/ \_______/|__/  |__/ \_______/ \_______/      |______/|__/  |__/|__/     \______/ 
+                                                                                                                          
+                                                                                                                          
+                                                                                                                          
+Data Leaks
+1. Nitro PDF Leak (September 2020)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Language: English
+Registration Date: January 18, 2015, 11:56:17
+Status: Active
+First Name: nouhailagirl@hotmail.com
+Last Name: nouhailagirl@hotmail.com
+Last Active: June 24, 2015, 18:11:06
+Full Name: nouhailagirl@hotmail.com nouhailagirl@hotmail.com
+
+
+
+2. Collection #2 (January 2019)
+
+Email: nouhailagirl@hotmail.com
+Password: 321123321
+Details: Part of a 526 GB collection with 15.8 billion lines, 3.2 billion unique email-password pairs.
+
+3. Large Email-Password Collection (May 18, 2023)
+
+Email: nouhailagirl@hotmail.com
+Password: simba123
+Details: 338 GB collection with 11 billion lines, reduced to 2 billion unique records.
+
+4. WattPad Leak (June 2020)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Country: Netherlands
+Registration Date: July 21, 2016, 22:09:29
+Full Name: nouhailaa_x
+Gender: Female
+IP: 83.117.72.217
+Nickname: nouhailaa_x
+Password (Bcrypt): $2y$10$02K4XbCO6Z1wXAQEF0G2sONkHl8fn13lfo4n6zVOZwofLgbVey3oi
+
+
+
+5. We Heart It Leak (November 2013, Discovered October 2017)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Nickname: justnouhaila
+Password (SHA-256): b3df8f68bdc4b796cd82f1f711298fee9346305ebf340b99f021a4b3894d581b
+User ID: 9244853
+
+
+
+6. Zeeroq Combolist (Around 2019)
+
+Email: nouhailagirl@hotmail.com
+Password: simba123
+Details: 250 combolists with over 200 million records.
+
+7. Zynga Leak (September 2019)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Nickname: nouhailadraw
+Password (SHA1+Salt): f584f349fc606836fc37e290bfeb79831f66308b
+Salt: 4e84807f3a7d4533f693b15d6c37c7fc14e601d3
+Registration Date: February 9, 2014, 19:44:24
+Last Activity: February 9, 2014, 19:44:24
+Additional Password: simba123
+
+
+
+8. ZEEROQ_COM_226M_COMBOLIST (2019)
+
+Email: nouhailagirl@hotmail.com
+Password: simba123
+Domain: hotmail.com
+
+9. TICKETCOUNTER_NL_4M_TRAVEL (December 2020)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Name: Yaacoubi
+Last IP: 62.221.197.99
+ID: 4357145
+Domain: hotmail.com
+
+
+
+10. NEOPETS_COM_68M_GAMING (May 2013)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Username: bellakatrina
+Name: nouhaila
+Password: 321123321
+Last IP: 62.45.33.103
+Birthdate: April 6, 1993
+Country: Netherlands
+Gender: Female
+Domain: hotmail.com
+
+
+
+11. GONITRO_COM_77M_TECH (October 2020)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Created: January 18, 2015, 11:56:17
+Language: English
+Domain: hotmail.com
+
+
+
+12. WATTPAD_COM_275M_SOCIAL (June 2020)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Username: nouhailaa_x
+Name: nouhailaa_x
+Last IP: 83.117.72.217
+Password (Bcrypt): $2y$10$02K4XbCO6Z112wXAQEF0G2sONkHl8fn13lfo4n6zVOZwofLgbVey3oi
+Created: July 22, 2016, 00:09:29
+Updated: July 22, 2016, 00:09:29
+Birthdate: 0000-00-00
+Country: Netherlands
+Gender: Female
+Domain: hotmail.com
+
+
+
+13. ZYNGA_COM_202M_GAMING (September 2019)
+
+Email: nouhailagirl@hotmail.com
+Details:
+Username: nouhailadraw
+Password (SHA1+Salt): f584f349fc606836fc37e290bfeb79831f66308b
+Salt: 4e84807f3a7d4533f693b15d6c37c7fc14e601d3
+Created: February 9, 2014, 19:44:24
+Domain: hotmail.com
+
+
+
+14. Collection of 3,000 Data Leaks (February 2018)
+
+Email: feerce@gmail.com
+Leaks:
+Password: pinokees
+
+
+
+15. AdultFriendFinder Leak (October 2016)
+
+Email: feerce@gmail.com
+Details:
+Language: Dutch
+Last Active: March 11, 2012, 07:31:41
+Nickname: Goudsekaas
+Password (SHA1): pinokees
+
+
+
+16. Badoo Leak (June 2016)
+
+Email: feerce@gmail.com
+Leaks:
+Age: 22
+Birthdate: May 29, 1990
+First Name: Ikwil
+Gender: Male
+Last Name: Ikwil
+Password (MD5): a3add7961fd83108551a581ae63a48e5
+Additional Entry:
+Last Name: Nico
+Password (MD5): 21d375fdb28afbf572de7020af9638b3
+
+
+
+
+
+17. CompilationOFManyBreaches and 12Billion Special (February 2021, September 2022)
+
+Email: feerce@gmail.com
+Leaks:
+Password: dogievign
+Password: table84054
+Password: xevupihi
+
+
+
+18. Collection of 5 Parts (January 2019)
+
+Email: feerce@gmail.com
+Leaks:
+Collection Numbers: 2, 4
+Password: 3500074
+
+
+Collection Numbers: 1, 2, 4
+Password: bydotoca
+
+
+Password: pinokees
+Collection Numbers: 1, 2, 4
+Password: pinokees1
+
+
+
+
+
+19. Collection 1 (January 2019)
+
+Email: feerce@gmail.com
+Leaks:
+Leak Site: Zoosk.com [53,782,400]
+Password: bydotoca
+
+
+Leak Site: Evony.com [28kk]
+Password: pinokees
+
+
+Leak Site: MPGH.net [2,3kk]
+Password: pinokees
+
+
+
+
+
+20. Collection 5 (January 2019)
+
+Email: feerce@gmail.com
+Leaks:
+Leak Site: alora.io
+Password: pinokees
+
+
+Leak Site: MMORG.net
+Password: pinokees
+
+
+
+
+
+21. Hacker Data Trade (December 2022)
+
+Email: feerce@gmail.com
+Leaks:
+Leak Site: Evony
+Password: pinokees
+
+
+Leak Site: MMORG.net
+Password: pinokees
+
+
+
+
+
+22. Telegram Channel Databases (2022)
+
+Email: feerce@gmail.com
+Details: No additional password or details provided.
+
+23. Exploit.in Leak (End of 2016)
+
+Email: feerce@gmail.com
+Password: bydotoca
+
+24. Fling Leak (2011)
+
+Email: feerce@gmail.com
+Details:
+Birthdate: August 24, 1989
+Gender: Male
+Hobby: FETISHGROUPSEXONLINE FLIRTINGOTHER
+IP: 62.45.33.116
+Interested: Woman
+Last Login: March 10, 2010, 17:01:31
+Nickname: feerce67
+Password: table84054
+Registration Date: January 15, 2010, 10:35:32
+
+
+
+25. Decrypted Databases (2020)
+
+Email: feerce@gmail.com
+Leaks:
+Leak Site: MMORG.net
+Password: pinokees
+
+
+Leak Site: Mpgh.net
+Password: pinokees
+
+
+
+
+
+26. Gravatar Leak (October 2020)
+
+Email: feerce@gmail.com
+Details:
+Avatar: https://secure.gravatar.com/avatar/9845f2a3ce114c42deb88dd3042ae830
+Login: feerceydpf
+Nickname: feerceydpf
+URL: http://gravatar.com/feerceydpf
+
+
+
+27. Gravatar Scraping (January 2023)
+
+Email: feerce@gmail.com
+Details:
+Avatar: https://secure.gravatar.com/avatar/9845f2a3ce114c42deb88dd3042ae830
+Nickname: feerceydpf
+
+
+
+28. IPMART (Mobi Nuke) Leak (2015)
+
+Email: feerce@gmail.com
+Details:
+IP: 62.45.33.108
+Nickname: Feercey
+Password (MD5+Salt): 84e717d14123a9992f6a85500824b39d
+Salt: ?aI
+
+
+
+29. MPGH Leak (October 2015)
+
+Email: feerce@gmail.com
+Details:
+IP: 82.156.130.187
+Nickname: Feerce
+Password (MD5+Salt): 8a40cd0de11ec08ccd6fe2f7cbf86836:nJe|\\%WCVREWA.$.x]TxuBY>94snA?
+Additional Password: pinokees
+
+
+
+30. MySpace Leak (Around 2008)
+
+Email: feerce@gmail.com
+Details:
+Nickname: 83866030
+Password: pinokees1
+
+
+
+31. Spacetime Studios Leak (November 2020)
+
+Email: feerce@gmail.com
+Details:
+Password (bcrypt): $2a$06$jXV3l/jEu0wkO4ouxezMVuQ3FMTSI96ogEehl1ijDSIXX7GWZlMzq
+Registration Date: August 20, 2013, 06:26:24.367732
+
+
+
+32. @httsmvkcom Collection (February 2020)
+
+Email: feerce@gmail.com
+Leaks:
+Password: 3500074
+Password: dogievign
+Password: pinokees
+Password: pinokees1
+
+
+
+33. USA Hacks Compilation (2022)
+
+Email: feerce@gmail.com
+Password: pinok
+
+34. Zoosk Leak (Around 2011)
+
+Email: feerce@gmail.com
+Details:
+Date: September 28, 2015
+Nickname: 3500074
+Password (MD5): a3add7961fd83108551a581ae63a48e5
+
+
+
+35. DATASEEKER_ONLINE_14M_GAMING (May 2024)
+
+Email: feerce@gmail.com
+Details:
+Username: Feerce
+Last IP: 82.156.130.187
+Hash: 8a40cd0de11ec08ccd6fe2f7cbf86836
+Salt: nJe|\\%WCVREWA.$.x]TxuBY>94snA?
+Domain: gmail.com
+URL: mpgh
+
+
+
+36. ADULTFRIENDFINDER_COM_220M_DATING (2016)
+
+Email: feerce@gmail.com
+Details:
+Username: Goudsekaas
+Hash: pinokees
+Domain: gmail.com
+Language: Dutch
+
+
+
+37. MYSPACE_COM_357M_SOCIAL (2008)
+
+Email: feerce@gmail.com
+Details:
+Username: 83866030
+Hash: D996EC130E133ED5A48DC1D699516EDF8430A8F4
+Domain: gmail.com
+
+
+
+38. 2844DATABASES_NA_218M_COMPILATION (2018)
+
+Email: feerce@gmail.com
+Details:
+Password: pinokees
+Domain: gmail.com
+
+
+
+39. EVONY_COM_28M_GAMING (2016)
+
+Email: feerce@gmail.com
+Details:
+Password: pinokees
+Domain: gmail.com
+
+
+
+40. FLING_COM_39M_DATING (2011)
+
+Email: feerce@gmail.com
+Details:
+Username: feerce67
+Last IP: 62.45.33.116
+Hash: f0149954ce2c3e2d49c5e86efa8b00f8
+Password: table84054
+Domain: gmail.com
+Created: January 15, 2010, 10:35:32
+Birthdate: August 24, 1989
+Gender: Male
+
+
+
+41. BADOO_COM_126M_DATING (2016)
+
+Email: feerce@gmail.com
+Details:
+Username: 292699182.0292699182
+Hash: a3add7961fd83108551a581ae63a48e5
+Name: Ikwil
+Domain: gmail.com
+Birthdate: May 29, 1990
+Other: 22:M:19:2069:784807
+Additional Entry:
+Username: 290576988.0290576988
+Hash: 21d375fdb28afbf572de7020af9638b3
+Domain: gmail.com
+Birthdate: May 29, 1990
+Other: 22:M:19:2069:784807
+
+
+
+
+
+42. ZOOSK_COM_57M_DATING (2011)
+
+Email: feerce@gmail.com
+Details:
+Username: 3500074
+Hash: a3add7961fd83108551a581ae63a48e5
+Domain: gmail.com
+
+0x6 
+  /$$$$$$                            /$$ /$$   /$$             
+ /$$__  $$                          | $$|__/  | $$             
+| $$  \__/  /$$$$$$   /$$$$$$   /$$$$$$$ /$$ /$$$$$$   /$$$$$$$
+| $$       /$$__  $$ /$$__  $$ /$$__  $$| $$|_  $$_/  /$$_____/
+| $$      | $$  \__/| $$$$$$$$| $$  | $$| $$  | $$   |  $$$$$$ 
+| $$    $$| $$      | $$_____/| $$  | $$| $$  | $$ /$$\____  $$
+|  $$$$$$/| $$      |  $$$$$$$|  $$$$$$$| $$  |  $$$$//$$$$$$$/
+ \______/ |__/       \_______/ \_______/|__/   \___/ |_______/ 
+
+    Info Grabebd by : https://doxbin.com/user/wajkdhw     
+    Formatted by : https://doxbin.com/user/wajkdhw
+
+
+                                                        
+
+                                    </pre>`
+  },
+  entry3: {
+    title: "John Smith",
+    text: `<pre class="pre-content">
+EVIDENCE COLLECTED BY: 1_3x0 and flashedtoday
+ 
+
+Reason for Investigation: Allegations of attempting to obtain illegal content, doxxing, and soliciting inappropriate material from individuals, including minors, via direct messages.
+Platforms Involved: Discord and Telegram.
+
+discord: lacomne 
+Discord ID: 1400177561555833002
+Telegram: @Alejandroocarma
+
+IP : 31.4.223.238 - Ip is not pingable
+
+Face caught from 1_3x0
+https://files.catbox.moe/nco12h.png
+https://files.catbox.moe/nco12h.png
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ EVIDENCE INDEX ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ 📁 EXHIBIT 0x01 Subject Profile ┃
+┃ 📁 EXHIBIT 0x02 Location Analysis ┃
+┃ 📁 EXHIBIT 0x03 Known Associates ┃
+┃ 📁 EXHIBIT 0x04 Digital Evidence ┃
+┃ 📁 EXHIBIT 0x05 Connect Applications ┃
+┃ 📁 EXHIBIT 0x06 Ip Info ┃
+┃ 📁 EXHIBIT 0x07 Breached Info ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+ ██╗        ██████╗ ██╗  ██╗ ██████╗      █████╗ ███╗   ██╗██████╗     ███████╗██╗      █████╗ ███████╗██╗  ██╗███████╗██████╗ ████████╗ ██████╗ ██████╗  █████╗ ██╗   ██╗
+███║        ╚════██╗╚██╗██╔╝██╔═████╗    ██╔══██╗████╗  ██║██╔══██╗    ██╔════╝██║     ██╔══██╗██╔════╝██║  ██║██╔════╝██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝
+╚██║         █████╔╝ ╚███╔╝ ██║██╔██║    ███████║██╔██╗ ██║██║  ██║    █████╗  ██║     ███████║███████╗███████║█████╗  ██║  ██║   ██║   ██║   ██║██║  ██║███████║ ╚████╔╝ 
+ ██║         ╚═══██╗ ██╔██╗ ████╔╝██║    ██╔══██║██║╚██╗██║██║  ██║    ██╔══╝  ██║     ██╔══██║╚════██║██╔══██║██╔══╝  ██║  ██║   ██║   ██║   ██║██║  ██║██╔══██║  ╚██╔╝  
+ ██║███████╗██████╔╝██╔╝ ██╗╚██████╔╝    ██║  ██║██║ ╚████║██████╔╝    ██║     ███████╗██║  ██║███████║██║  ██║███████╗██████╔╝   ██║   ╚██████╔╝██████╔╝██║  ██║   ██║   
+ ╚═╝╚══════╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝     ╚═╝     ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═════╝    ╚═╝    ╚═════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝                                                                                                                                                                                                                                                                                                                             
+───────────────────────────────────────────
+PRIMARY SUBJECT: John Smith
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 📁 EXHIBIT 0x01 SUBJECT PROFILE ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+┌──────────────────────────────────────────────────────────────────────────────────────────┐
+│ [SUBJECT IDENTIFICATION] │
+│ Name........................  │ John Smith 
+│ Old Names: | unkown
+│ |
+| ip Address:  | 31.4.223.238
+│ Current Phone Number: | +34635990689
+│ Age......................... │ 18
+│ telegram.....................| @Alejandroocarma
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ [CONTACT INFORMATION] │
+│ Current Address.............  │ Algeciras Calle velazquez sevilla spain
+| Parents Address.............  | most likely Algeciras Calle velazquez sevilla spain
+│ |
+| Phone Numbers...............  │+34635990689
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 📁 EXHIBIT 0x02 LOCATION ANALYSIS ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+🔍 PROPERTY REPORT 🔍
+PRIMARY SURVEILLANCE LOCATION
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 📁 EXHIBIT 0x03 KNOWN ASSOCIATES ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+╔═════════════════════════════════════════════════════════════════════════════╗
+║ ASSOCIATE #1:  ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ [RELATIONSHIP TO SUBJECT] │
+│ Relation.................... Mother │
+│ │
+│ [PERSONAL DETAILS] │
+│ Name........................  │ rosa fernandez
+│ Age.........................  │ 50
+│ │
+│ [CONTACT INFORMATION] │
+│ Current Address.............  │ Algeciras Calle velazquez sevilla spain
+│ │
+│ │ │
+│ │
+│ │
+│ [KNOWN RELATIVES] │
+│ Family Connections..........  │david kuñada and John Smith
+└─────────────────────────────────────────────────────────────────────────────┘
+
+╔═════════════════════════════════════════════════════════════════════════════╗
+║ ASSOCIATE #2:  ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ [RELATIONSHIP TO SUBJECT] │
+│ Relation.................... Father │
+│ │
+│ [PERSONAL DETAILS] │
+│ Name........................  │ david kuñada
+│ Age.........................  │ 52
+│ │ 
+│ [CONTACT INFORMATION] │
+│ Current Address.............  │ Algeciras Calle velazquez sevilla spain
+│ │
+│ Previous Addresses.......... │ Algeciras Calle velazquez sevilla spain
+│ │
+| |
+│ [KNOWN RELATIVES] │
+│ Family Connections.......... | John Smith and rosa fernandez
+└─────────────────────────────────────────────────────────────────────────────┘
+╔═════════════════════════════════════════════════════════════════════════════╗
+║ 📁 EXHIBIT 0x05 Connected Applications  ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ [gmail/connected Applications] │
+│ │Gmail.................... │
+│ │extra Applications..........│
+│ │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 📁 EXHIBIT 0x06 Ip INFORMATION ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃IP: 31.4.223.238
+┃VPN: False
+┃Proxy: False
+┃Tor: False
+┃City: Algeciras (maybe)
+┃Region: Canary Islands
+┃Country: spain
+┃Latitude: 28.1000
+┃Longitude: -15.4098
+┃Network: 31.4.0.0/16
+┃As Number: AS12430 
+┃As Organization: Vodafone Spain
+┃Most likely Address/Main Address: Algeciras Calle velazquez sevilla spain 
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 📁 EXHIBIT 0x07 Breached Info ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃Email 1: Noeliasamjurado@gmail.com
+┃Email 2: antoniosanchezalonso3@gmail.com
+┃Email 3: belenvivasgarcia68@gmail.com
+┃Email 4: bxnxnxbxbdnx@hotmail.es
+┃Email 5: claudiasoyyo@gmail.com
+┃Email 6: garbanzo_48@hotmail.com
+┃Email 7: irisdelgadodiaz0@gmail.com
+┃Email 8: jmponcester@gmail.com
+┃Email 9: pequenabohemia@gmail.com
+┃Email 10: rakearjona1677@hotmail.com
+┃Email 11: rebe-kparari@hotmail.com
+┃Email 12: sandraaznar99@gmail.com
+┃Email 13: susanabl1976@gmail.com
+┃Email 14: susanapenaloures@gmail.com
+┃Email 15: verovivas@gmail.com
+┃Email 16: yodana95@gmail.com
+┃
+┃Leak from 1981_JOBANDTALENT_COM_11M_EMPLOYMENT_022018
+┃email: inma_uni@hotmail.com
+┃lastip: 31.4.223.238
+┃hash: 1C2zXJXyEiUxooQQv2EgKksbST6hMx11p9
+┃salt: hyXiZJhAoH2GkmoDYdj2
+┃domain: hotmail.com
+┃id: 35260858
+┃
+┃Leak from 1981_JOBANDTALENT_COM_11M_EMPLOYMENT_022018
+┃Email: marga_nono@hotmail.com
+┃Last IP: 31.4.223.238
+┃Hash: 6ba109a8bbb349b9ec65405e4bbbed59433d0cb1
+┃Salt: iArUGppEqboCKw5df4ai
+┃Domain: hotmail.com
+┃ID: 31737821
+┃
+┃Leak from 1769_AITYPE_COM_75M_TECH_122017
+┃Email: susanapenaloures@gmail.com
+┃Last IP: 31.4.223.238
+┃Domain: gmail.com
+┃ID: 53a1787ae4b0864b1cffa05a
+┃City: Caldelas
+┃Country: ES
+┃
+┃Leak from 1769_AITYPE_COM_75M_TECH_122017
+┃Email: yodana95@gmail.com
+┃Last IP: 31.4.223.238
+┃Domain: gmail.com
+┃ID: 53fb4a15e4b087c6dbdcbd9a
+┃City: Caldelas
+┃Country: ES
+┃
+┃Leak from 1008_ROMWE_COM_19M_RETAIL_062018
+┃Email: rakearjona1677@hotmail.com
+┃Last IP: 31.4.223.238
+┃Domain: hotmail.com
+┃
+┃Leak from 0950_DAILYQUIZ_ME_12M_EDU_012021
+┃Username: vero26vs
+┃Email: verovivas@gmail.com
+┃Last IP: 31.4.223.238
+┃Password: 260716
+┃Domain: gmail.com
+┃UID: 5011661
+┃Created: 2017-01-20 09:03:52
+┃
+┃Leak from 0798_MYFITNESSPAL_COM_144M_FITNESS_022018
+┃Username: belenluque76
+┃Email: belenluque76@hotmail.com
+┃Last IP: 31.4.223.238
+┃Domain: hotmail.com
+┃
+┃Leak from 0686_WATTPAD_COM_275M_SOCIAL_062020
+┃Email Information
+┃
+┃Username: cclaaapii
+┃Email: claudiasoyyo@gmail.com
+┃Last IP: 31.4.223.238
+┃Hash: 6e1d1879cfe5de754975732f7b4fe7475c34fbfe255cbcc9d46cc0e36f8f8933
+┃Domain: gmail.com
+┃Created: 2014-06-28 21:36:07
+┃Updated: 2014-06-28 21:36:07
+┃Birthdate: 1989-06-28
+┃Country: ES
+┃Gender: F
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛</pre>`
+  }
+};
+
+function openPanel(id) {
+  document.getElementById("panelTitle").innerText = data[id].title;
+  document.getElementById("panelText").innerHTML = data[id].text;
+  document.getElementById("overlay").style.display = "flex";
+}
+
+function closePanel() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

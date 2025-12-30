@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Members</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+    body {
+      background: black;
+      color: white;
+      font-family: Inter, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Hide everything until accepted */
+    }
+
+    /* === AGE / TOS GATE === */
+    #gate {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 100;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #gate h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+
+    #gate p {
+      max-width: 600px;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    #gate button {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 12px 40px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #gate button:hover {
+      background: white;
+      color: black;
+    }
+
+    /* Main content - hidden until gate is accepted */
+    #mainContent {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    /* === SWING SETUP === */
+    .hanger {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hanger img {
+      display: block;
+      margin: 0;
+      max-height: 70vh;
+      filter: grayscale(100%);
+      transform-origin: 50% 0%;
+      animation: swing 7s ease-in-out infinite;
+    }
+
+    @keyframes swing {
+      0%   { transform: rotate(0deg); }
+      20%  { transform: rotate(4deg); }
+      50%  { transform: rotate(0deg); }
+      80%  { transform: rotate(-4deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .members {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    .members a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .members a:hover {
+      color: red;
+    }
+
+    /* Background music control */
+    .bg-music {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      opacity: 0.4;
+      z-index: 10;
+    }
+
+    .bg-music:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOS / ENTRY GATE -->
+  <div id="gate">
+    <h1>WARNING</h1>
+    <p>
+      By clicking "I Agree" below, you confirm that you have read and agree to our 
+      <strong>Terms of Service</strong> and <strong>Privacy Policy</strong>.<br><br>
+      This website contains sensitive and explicit content.<br>
+      You must be of legal age in your jurisdiction to proceed.
+    </p>
+    <button onclick="acceptGate()">I Agree & Enter</button>
+  </div>
+
+  <!-- MAIN CONTENT (hidden until accepted) -->
+  <div id="mainContent" class="container">
+
+    <!-- SWINGING IMAGE -->
+    <div class="hanger">
+      <img src="girl.png" alt="figure">
+    </div>
+
+    <div class="members">
+      <a href="DJ.html">DJ</a>
+      <a href="batman.html">Batman</a>
+      <a href="redact.html">Redact</a>
+      <a href="Lucid.html">Lucid</a>
+    </div>
+
+  </div>
+
+  <!-- Background music -->
+  <audio autoplay loop id="backgroundMusic">
+    <!-- Replace with your actual MP3 filename -->
+    <source src="song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Optional music controls -->
+  <div class="bg-music">
+    <small>🔊 Background track</small><br>
+    <button onclick="document.getElementById('backgroundMusic').volume = 0.1" style="font-size:12px;">Low</button>
+    <button onclick="document.getElementById('backgroundMusic').volume = 0.3" style="font-size:12px;">Med</button>
+    <button onclick="document.getElementById('backgroundMusic').volume = 0.6" style="font-size:12px;">High</button>
+  </div>
+
+  <script>
+    function acceptGate() {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'flex';
+      // Optional: start music only after user interaction (better browser compliance)
+      document.getElementById('backgroundMusic').play();
+    }
+  </script>
+
+</body>
+</html>

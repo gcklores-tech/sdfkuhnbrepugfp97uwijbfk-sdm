@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redact</title>
+
+<style>
+body {
+  background: #000;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* HERO SECTION */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hero-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #333;
+  box-shadow: 0 0 40px rgba(0,0,0,0.9);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin: 0 0 15px 0;
+}
+
+.intro-text {
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  padding: 60px 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* LIST CONTAINER */
+.list {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #0b0b0b;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 0 80px rgba(0,0,0,.9);
+}
+
+/* ITEM */
+.item {
+  background: linear-gradient(180deg,#111,#090909);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.item:hover {
+  background: #141414;
+}
+
+.arrow {
+  opacity: .6;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* PANEL */
+.panel {
+  width: 90%;
+  max-width: 800px;
+  height: 80vh;
+  background: #101010;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 100px rgba(0,0,0,1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* PANEL HEADER */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.close {
+  font-size: 28px;
+  cursor: pointer;
+  opacity: .6;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+/* SCROLL CONTENT */
+.panel-content {
+  overflow-y: auto;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* Preformatted content styling */
+.pre-content {
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #ddd;
+  background: #0a0a0a;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO SECTION: Redact profile -->
+<div class="hero">
+  <img src="https://files.catbox.moe/gsqitp.png" alt="Redact" class="hero-img">
+  <h1>Redact</h1>
+  <div class="intro-text">
+    I would rather not say how i make my living
+  </div>
+</div>
+
+<!-- MAIN CONTENT: Clickable list -->
+<div class="main-content">
+  <div class="list">
+    <div class="item" onclick="openPanel('entry1')">
+      <span>Riley Rowe</span>
+      <span class="arrow">›</span>
+    </div>
+
+
+<!-- OVERLAY WITH PANEL -->
+<div class="overlay" id="overlay">
+  <div class="panel">
+    <div class="panel-header">
+      <h2 id="panelTitle"></h2>
+      <div class="close" onclick="closePanel()">✕</div>
+    </div>
+    <div class="panel-content" id="panelText"></div>
+  </div>
+</div>
+
+<script>
+const data = {
+  entry1: {
+    title: "Stopbegs the retard",
+    text: `<pre class="pre-content">Full Name:
+Riley Rowe
+
+Ip Address:
+5.64.35.239
+
+Phone: 
++ 447931080628
+
+Scam proof:
+https://ibb.co/fnjwtRC
+https://ibb.co/f8ZY0vq
+https://ibb.co/GHzsmTP
+https://ibb.co/2dbszgy
+https://ibb.co/rb6gGp6
+https://ibb.co/Y08s3dY
+https://ibb.co/ZMQzgDK
+
+Mug Shot:
+https://ibb.co/YNst6yL
+
+Email From booterforms logs:
+https://ibb.co/SQ1DSFy
+https://ibb.co/9g6GCGk
+
+Address: 
+101 Wordsworth Gardens, Mid Glamorgan CF37 5HH
+
+Age: 
+16
+
+Email: 
+rileywjipt10@gmail.com
+
+Tiktok: 
+https://www.tiktok.com/@riley30k/
+
+Wifi Info:
+
+
+Profile SKYPGVMS on interface WiFi: 
+
+Login info:
+https://digitalstress.su/register  |  ggbro900  |  ggbro900
+https://accounts.snapchat.com/accounts/v2/password  |  suspective.1s  |  rileyrowe420
+https://bravestress.su/connect/register.php  |  rileyggg  |  ggbro900
+https://discord.com/login  |  rileywjipt10@gmail.com  |  ggbro900
+https://panel.compixcloud.com/auth/login  |  dylansmith4200@aol.com  |  ggbro420
+https://api.vortexa-services.xyz/login  |  stopbegs  |  stopbegs'
+https://digitalstress.su/login  |  74vn123  |  Dorsey83!
+https://empiresmm.net/  |  stopbegsz  |  ggbro900
+https://www.paypal.com/signin  |  dylansmith4200@aol.com |  ggbro900
+
+
+Report one context:
+so this is a past thing about sir stopbegs he had scammed alot of ppl under the name "longproxys" 
+he admited thats him from the past to this new name he scams alot of clients and he scammed me for 1$ for a 1tb ddos attack DWC do bot go anywhere around this service DWC. 
+Scammer exposed.
+
+Report 2 context:
+“stop begs is a well known exit scammer as other services.
+as you can see in the screenshot proving his amount of failure services/exit scam services,
+hes calling sins about being a scammer aka sins being named "livicsu" due too stopbegs calling "livicsu" a scammer because he refused too do api to api with him and he is wrongfully targeting a legit service because stopbegs is being salty."
+
+Report 3 context:
+"hello today im here too make a long but helpful scam report about @stopbegs
+This person openly stated he exit scammed his past services. so  im here too go into depth about his "past services" 
+well his 1st service was useovh_bot aka a ddos for hire ddos bot on telegram while he stated that did not work. 
+he has now moved too tcpnets aka "polarbotnet", then moved over 2 months into "HOMEBOTNET" then "BluntedC2" now david is the Owner of Blunted C2 after that he named his new service after 3 months. "DarkC22" after moving too that 1 month later he moved a new name listed as "Kodachibotnet 600G" then "Chainbotnet"  2 days after, 
+he has made several false reports about several legit services. and several ssn clients and made false claims stating space is a scammer with 0 proof along with stopbegs reports. understand anything stopbegs makes aka "Riley Rowe" he had scammed several people one of his older names was listed as "longproxys" witch is proof "STOPBEGS" scammed me for 1$ for a "1TB botnet attack"
+
+
+Bunted C2 Owner aka David the pedo:
+
+Owner:https://t.me/Blunted_ssh
+
+pedo proof/sexual harassment:
+https://ibb.co/Jc5Nw4R
+https://ibb.co/2vJ5ffL
+https://ibb.co/zXN51K1
+https://ibb.co/3crnnPF
+https://ibb.co/NKXrt7N
+https://ibb.co/WncQTwn
+https://ibb.co/Ry4nzyp
+https://ibb.co/yBZ1sB5
+https://ibb.co/6rpgHLF
+
+SSN: 605441771
+
+Database: 0683_MODBSOLUTIONS_COM_58M_B2B_2016
+email: hate80@mail.com
+name: DAVID KNEISLEY
+address: 827 OAK ST
+city: HOUSTON
+state: TX
+zip: 77018
+gender: M
+
+email: kneisley92@gmail.com
+name: david kneisley
+address: 126 E ROCKEY CREEK HOUSTON TEXAS
+city: Houston
+state: TX
+zip: 77083
+gender: M
+
+email": "hate80@mail.com",
+    "ip": "50.162.24.126",
+    "first_name": "DAVID",
+    "last_name": "KNEISLEY",
+    "address1": "827 OAK ST",
+    "city": "HOUSTON",
+    "state": "TX",
+    "zip": "77018",
+    "inAccountName": "DMS_Cred1",
+    "gender": "M",
+    "__v": 0
+
+newest info -
+
+{
+  "_id": {
+    "$oid": "5748b840ae5174d3c4dfe9a7"
+  },
+  "email": "kneisley92@gmail.com",
+  "gender": "M",
+  "zip": "77083",
+  "state": "TX",
+  "city": "Houston",
+  "address1": "126 E ROCKEY CREEK HOUSTON TEXAS",
+  "last_name": "kneisley",
+  "first_name": "david",
+  "updatedAt": {
+    "$date": "2016-08-16T16:23:06.760Z"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2016-05-27T21:11:35.015Z"
+  }
+}
+
+nfoservers.com:kneisley92@gmail.com:FreHhIRA
+www.nfoservers.com/:Kneisley92@gmail.com:FreHhIRA
+www.nfoservers.com/:kneisley92@gmail.com:FreHhIRA
+nfoservers.com:kneisley92@gmail.com:FreHhIRA
+nfoservers.com:Kneisley92@gmail.com:FreHhIRA
+kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com/:kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com:Kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com:kneisley92@gmail.com:FreHhIRA
+kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com/:kneisley92@gmail.com:FreHhIRA
+Email: kneisley92@gmail.com
+kneisley92@gmail.com:FreHhIRA
+http://nfoservers.com:Kneisley92@gmail.com:FreHhIRA
+http://nfoservers.com:kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com/ kneisley92@gmail.com:FreHhIRA
+kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com kneisley92@gmail.com:FreHhIRA
+kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com/:Kneisley92@gmail.com:FreHhIRA
+Kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com/:kneisley92@gmail.com:FreHhIRA
+kneisley92@gmail.com
+http://nfoservers.com Kneisley92@gmail.com:FreHhIRA
+kneisley92@gmail.com:FreHhIRA
+http://nfoservers.com kneisley92@gmail.com:FreHhIRA
+kneisley92@gmail.com:FreHhIRA
+Kneisley92@gmail.com;FreHhIRA;https://www.nfoservers.com/
+https://www.nfoservers.com Kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com/:kneisley92@gmail.com:FreHhIRA
+https://www.nfoservers.com/ kneisley92@gmail.com:FreHhIRA
+Kneisley92@gmail.com:FreHhIRA
+Kneisley92@gmail.com:FreHhIRA
+Kneisley92@gmail.com:FreHhIRA
+"Kneisley92@gmail.com","FreHhIRA","https://www.nfoservers.com/"
+https://www.nfoservers.com/ kneisley92@gmail.com:FreHhIRA
+http://nfoservers.com:Kneisley92@gmail.com:FreHhIRA
+Kneisley92@gmail.com:FreHhIRA
+
+======================================================================= 
+bbos apis:
+       "https://aggu.spacey.sh/aggu/api?username=saturned&key=saturned&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=tls-bypass",
+      "https://92.249.48.9/api/attack?username=satrunsex&secret=satrunsex&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=!tls-kil",
+      "http://api.quantiumcode.pl/api/attack?host=<<$host>>&port=<<$port>>&time=<<$time>>&method=tlskill&key=1234&username=darkc2",
+      "http://api.nasa-federation.co.uk/api/attack?username=stopbegs&secret=curry&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=bypass-prem",
+      "https://kite.arcfn.us/api/attack?username=nigger11&key=1234&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=tls",
+      "https://privatenetc2.online/api/attack?username=sins&key=HvOQiZVj6y2EUYd&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=USER-BYPASS",
+      "https://api.vortexa-services.xyz/api?key=poop&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=cf-fucker",
+      "https://api.autumn-network.xyz/api/attack?username=stopbegs&key=curry&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=rapidreset",
+      "https://api.vortexa-services.xyz/api?key=poop&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=https-trash",
+      "https://api.autumn-network.xyz/api/attack?username=stopbegs&key=poop&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=browser",
+      "https://dnp3smsjs7mfqebdpntcmnkakqosdtot.api-endpoint.pro/api/attack?username=stopbegs&key=changeme&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=.http-ddos", 
+      "http://cloudc2.lol/api/attack?key=balls&username=stopbegs&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=browser",
+      "https://private.bartrickc2.ovh/api/attack?username=@stopbegs&secret=@stopbegs&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=flooder",
+      "https://api.vortexa-services.xyz/api?key=poop&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=https-rape",
+      "https://hackar.stresser.rip/api/attack?username=stopbegs&key=stopbegs&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=rapidreset",
+      "https://hackar.stresser.rip/api/attack?username=stopbegs&key=stopbegs&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=browser",
+      "https://api.chryslervx.com/api/attack?username=saturnc2&password=secret&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=http",
+      "http://84.247.132.20:1111/api/attack?host=<<$host>>&port=<<$port>>&time=<<time>>&method=tls",
+      "http://103.180.147.119:1111/api/attack?host=<<$host>>&port=<<$port>>&time=<<$time>>&method=h2",
+      "https://apisystem.herios-stress.xyz/api/attack?username=whosdior&key=changeme&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=http-socket",
+      "https://api.digitalstress.net/api/launch?user=4023&key=lCGZ2hWIbVDEkhMx&host=<<$host>>&port=<<$port>>time=<<$time>>&method=http-http-storm",
+      "https://veloria.autumn-network.xyz/?key=Expose&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=tls",
+      "https://gorilla-api.su/api/attack?username=pedabytes&secret=temp1234&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=cloudflare",
+      "https://natnetwork.fun/api/attack?key=change&host=<<$host>>&port=<<$port>>&time=<$time>>&method=tls",
+      "https://natnetwork.fun/api/attack?key==ApiZ_CoZ&host=<<$host>>&port=<<$port>>&time=<$time>>&method=private-tls",
+      "http://144.126.194.232:8080/api?key=stopbegs&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=bypass",
+      "http://144.126.194.232:8080/api?key=stopbegs&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=electron",
+      "https://api.chryslervx.com/api/attack?username=saturnc2&password=saturnc2api&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=tls",
+      "http://45.140.188.79/api/attack?username=begs&key=curry&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=browser",
+      "https://api.stressedforums.pw/launch?key=stopbegs&target=<<$host>>&time=<<$time>>&method=http-power",
+      "https://api.stressedforums.pw/?key=stopbegs&target=<<$host>>&port=<<$port>>&time=<<$time>>&method=TLSV2",
+      "http://89.169.55.95/api/attack?username=stopbegs&secret=stopbegs&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=tls",
+      "https://api.vortexa-services.xyz/api?key=poop&host=<<$host>>&port=<<$port>>&time=<<$time>>&method=httpsrape"
+Paypal info:
+{
+  "module": "paypal",
+  "schemaModule": "PayPal",
+  "data": {},
+  "front_schema": {
+    "module": "PayPal",
+    "image": "https://pics.paypal.com/00/s/ODAwWDgwMFhKUEc/p/NTAyYjUyMjktNDczNy00NTc4LWE5MTctYjJjZGZmZThjMGMw/image_58.jpg",
+    "body": {
+      "Address": "GB",
+      "Primary Address": "GB",
+      "Account Type": "User",
+      "Account Number Hint": "6096********9803",
+      "Account ID": "395RNU8Z3ANCS"
+    },
+    "timeline": {
+      "last_seen": true,
+      "registered": true,
+      "last_seen_date": null,
+      "registered_date": null,
+      "groups": {},
+      "group_items": {},
+      "group_years": {}
+    },
+    "tags": []
+  },
+  "spec_format": {
+    "registered": {
+      "proper_key": "Registered",
+      "value": true,
+      "type": "bool"
+    },
+    "id": {
+      "proper_key": "Id",
+      "value": "PID-G2AY-EMJR-HGUN-2YR2",
+      "type": "str"
+    },
+    "first_name": {
+      "proper_key": "First Name",
+      "value": "Dylan",
+      "type": "str"
+    },
+    "last_name": {
+      "proper_key": "Last Name",
+      "value": "Smith",
+      "type": "str"
+    },
+    "picture_url": {
+      "proper_key": "Picture Url",
+      "value": "https://pics.paypal.com/00/s/ODAwWDgwMFhKUEc/p/NTAyYjUyMjktNDczNy00NTc4LWE5MTctYjJjZGZmZThjMGMw/image_58.jpg",
+      "type": "str"
+    },
+    "location": {
+      "proper_key": "Location",
+      "value": "GB",
+      "type": "str"
+    },
+    "username": {
+      "proper_key": "Username",
+      "value": "dylansmith100",
+      "type": "str"
+    },
+    "profile_url": {
+      "proper_key": "Profile Url",
+      "value": "https://www.paypal.com/paypalme/dylansmith100",
+      "type": "str"
+    },
+    "email_hint": {
+      "proper_key": "Email Hint",
+      "value": "************00@ao*.com",
+      "type": "str"
+    },
+    "phone_hint": {
+      "proper_key": "Phone Hint",
+      "value": "+44 7*** **0628",
+      "type": "str"
+    },
+    "platform_variables": [
+      {
+        "key": "acc_number",
+        "proper_key": "Acc Number",
+        "value": "6096********9803",
+        "type": "str"
+      },
+      {
+        "key": "account_id",
+        "proper_key": "Account Id",
+        "value": "395RNU8Z3ANCS",
+        "type": "str"
+      },
+      {
+        "key": "type",
+        "proper_key": "Type",
+        "value": "USER",
+        "type": "str"
+      },
+      {
+        "key": "primary_address",
+        "proper_key": "Primary Address",
+        "value": "GB",
+        "type": "str"
+      }
+    ]
+  },
+  "status": "found",
+  "query": "dylansmith4200@aol.com",
+  "from": "User supplied email.",
+  "reliable_source": true,
+  "pretty_name": "PayPal",
+  "type": "card"
+} </pre>`
+  },
+};
+
+function openPanel(id) {
+  document.getElementById("panelTitle").innerText = data[id].title;
+  document.getElementById("panelText").innerHTML = data[id].text;
+  document.getElementById("overlay").style.display = "flex";
+}
+
+function closePanel() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

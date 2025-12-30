@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJ</title>
+
+<style>
+body {
+  background: #000;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* HERO SECTION - Smaller header now */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Reduced from full viewport to a fixed smaller height */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hero-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #333;
+  box-shadow: 0 0 40px rgba(0,0,0,0.9);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin: 0 0 15px 0;
+  text-shadow: 0 0 15px rgba(0,0,0,0.8);
+}
+
+.intro-text {
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* MAIN CONTENT - The list below the hero */
+.main-content {
+  padding: 60px 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* LIST CONTAINER */
+.list {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #0b0b0b;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 0 80px rgba(0,0,0,.9);
+}
+
+/* ITEM */
+.item {
+  background: linear-gradient(180deg,#111,#090909);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.item:hover {
+  background: #141414;
+}
+
+.arrow {
+  opacity: .6;
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* PANEL */
+.panel {
+  width: 90%;
+  max-width: 800px;
+  height: 80vh;
+  background: #101010;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 100px rgba(0,0,0,1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* PANEL HEADER */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.close {
+  font-size: 28px;
+  cursor: pointer;
+  opacity: .6;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+/* SCROLL CONTENT */
+.panel-content {
+  overflow-y: auto;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* Preformatted content styling */
+.pre-content {
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #ddd;
+  background: #0a0a0a;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO SECTION: Batman with image and intro text -->
+<div class="hero">
+  <img src="https://files.catbox.moe/7vhu20.jpg" alt="Batman" class="hero-img">
+  <h1>DJ</h1>
+  <div class="intro-text">
+    Osint Investigator specializing in uncovering digital footprints and personal data.
+  </div>
+</div>
+
+<div class="list">
+  <div class="item" onclick="openPanel('entry1')">
+    <span>Daniel Cagle</span>
+    <span class="arrow">›</span>
+  </div>
+
+  <div class="item" onclick="openPanel('entry2')">
+    <span>Alexis Ruiz</span>
+    <span class="arrow">›</span>
+  </div>
+
+  <div class="item" onclick="openPanel('entry3')">
+    <span>Daneil Anderson</span>
+    <span class="arrow">›</span>
+  </div>
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="panel">
+    <div class="panel-header">
+      <h2 id="panelTitle"></h2>
+      <div class="close" onclick="closePanel()">✕</div>
+    </div>
+    <div class="panel-content" id="panelText"></div>
+  </div>
+</div>
+
+<script>
+const data = {
+  entry1: {
+    title: "Daniel Cagle",
+    text: `
+    <p style="text-align:center; margin-bottom:20px;">[SECTION]</p>
+    <pre class="pre-content">══════════════════════════════════════════════════════════
+       LUKE CAGLE – FULL & COMPLETE PROFILE (Nov 2025)
+══════════════════════════════════════════════════════════
+
+PERSONAL INFORMATION
+----------------------------------------------------
+Full Name          : Daniel Cagle
+Alias              : Luke, Dan, Lumi
+DOB                : 1990-11-23 (November 23, 1990) → Age 35
+Phone Number       : (870) 716-8924 (Give him a call)
+IRL                : https://files.catbox.moe/nalws7.png (Face Picture)
+Gender             : Male
+Current Address    : 1063 S Baker St, Mountain Home, AR 72653, USA
+Coordinates        : 36.329508, -92.384489
+Last known IP      : 173.216.221.150 (Suddenlink/Optimum – Mountain Home, AR)
+ISP                : Suddenlink Communications / Optimum
+Location Accuracy  : City-level (Mountain Home, Arkansas)
+
+FAMILY & HOUSEHOLD
+----------------------------------------------------
+Mother / Owner     : Koleta Renea Cagle (age ~70s)
+Mother aliases     : Renea Cagle
+Mother email       : frostymom@live.com
+Relatives          : Tracie Renea Burns      (50s – Saint Louis, MO)
+                     Jennifer L Russell      (50s – West Plains, MO)
+
+PROPERTY DETAILS – 1063 S Baker St, Mountain Home, AR 72653
+----------------------------------------------------
+Property Type      : Single Family Home
+APN / Parcel       : 007-14580-200
+Year Built         : 2007 (18 years old – 4 years newer than zip median)
+Living Area        : 1,679 sq ft (5% above 72653 median)
+Lot Size           : 9,583 sq ft (0.22 acres – 67% smaller than zip median)
+Bathrooms          : 2
+Heating            : Central
+Air Conditioning   : Central A/C
+Roof               : Fiberglass
+Garage             : Yes
+Purchase Date      : January 28, 2019
+Purchase Price     : $120,000
+Current Owner      : Koleta Renea Cagle
+Mortgage Taken     : December 11, 2020 (30-year fixed)
+Assessed Value 2024: $155,000
+Est. Market Value  : $152,000 – $168,000 (~$160K average)
+Annual Taxes 2024  : $559
+Price per sq ft    : ~$95 (2% below zip average)
+
+EMAILS & LINKED SERVICES
+----------------------------------------------------
+1. Rorder999@gmail.com (MAIN & MOST USED)
+   Username       : LukeCagle (almost everywhere)
+   Created        : 2017-02-15
+   Confirmed on   : Wattpad, Google, TikTok, Disney+, EA/Origin, Lovense,
+                    NVIDIA, Spotify, VRChat, Facebook (ID 222736368133779)
+
+2. fangoverffang@gmail.com
+   Status         : Mentioned once, no services confirmed
+
+3. frostymom@live.com
+   Owner          : Mother (Koleta Renea Cagle)
+
+4. ainuchihaxzd@gmail.com
+   Status         : Daniel Cagle's personal email.
+
+DATA BREACHES CONTAINING LUKE’S INFO
+----------------------------------------------------
+1. Wattpad.com breach – May/June 2020 (~275 million records)
+   Leaked: email, username LukeCagle, full name, DOB 1990-11-23,
+           gender M, country US, Facebook ID 222736368133779
+   → No password leaked for this account
+
+2. therefiadvisor.com compilation (post-2020)
+   Leaked: full name, address, DOB, emails, mother’s name/email,
+           relatives, IP 173.216.221.150, location data
+
+ACTIVE / REGISTERED ACCOUNTS (2025)
+----------------------------------------------------
+Discord      : clumzydomsy (User ID 1309071090097721388 – created Nov 21, 2024)
+TikTok       : @luke.cage218 (display name “luke cage”)
+Google       : Active – has photo avatar & Google reviews
+Disney+      : Registered
+EA / Origin  : Registered
+Lovense      : Registered (adult remote-control toy app)
+NVIDIA       : Registered
+Spotify      : Registered
+VRChat       : Registered
+Wattpad      : LukeCagle (old account, breached)
+
+══════════════════════════════════════════════════════════
+100% COMPLETE – Every piece of data included (Nov 30, 2025)
+══════════════════════════════════════════════════════════</pre>
+    `
+  },
+  entry2: {
+    title: "Lexi Egirl Federal Agenent",
+    text: `<pre class="pre-content">Lexi is a 18 year old comgirl whos whole internet personality is the "fbi", "com" and being a "cyber security"
+Analyst and "specialist" She has joined "AE" Groups like "mercy" and other groups to try and get "known"
+in the community. Also comes from roblox / da hood community where nobody likes her and where she was ran out. 
+╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                             - Lexis Information -                            		          ║
+╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+
+ » Name: Alexis Jovhanna ruiz
+ » DOB Octobor 3rd 2007
+       * 10/03/2007
+
+ » Height: 5'1 (According to records confirmed.)
+ » Weight: 142 (According to records confirmed.) 
+              *Extra confirmation begging dad for food.
+              *https://files.catbox.moe/jdvy9h.jpg
+              *https://files.catbox.moe/aol066.jpg
+              *https://files.catbox.moe/8j3552.jpg
+
+ » Confirmation:
+            *https://ibb.co/v6rmSg9R (Number confirmation.)
+            *https://ibb.co/gZxLhKZC (Being in a vault full of roblox kids)
+            *https://ibb.co/RTVCqdg0 (her asking us to stop calling her number)
+            *https://ibb.co/sDcgr4f  (claiming her father was her "uncle")
+
+
+ »Aliases: 
+         *LexiXD
+         *Lexi
+         *ninja jr
+         *rep jr
+         *investigatingniggers
+         *cybersecurityenthusiast
+         *pooron
+         *chasityxdd
+         *chasityxd
+         *define instanity for me
+         *chasity
+         *bently bentayga
+         *lexiknr
+         *rotery
+         *thirtytimestomuch
+         *xoforeatives
+         *egirlfullofbrainrot
+         *matchafein
+         *dumosity
+
+
+»Face:https://files.catbox.moe/03gjty.png 
+     *https://files.catbox.moe/anrfl0.png (angle fishes shows half of her face.)
+
+
+»Working with feds:https://files.catbox.moe/byprov.png 
+                  *https://files.catbox.moe/77s2jj.png (confirmation was in mercy)
+                  *https://files.catbox.moe/z0v27n.jpg
+»Groups: 
+       *knr
+       *mercy
+
+»psychiatric records: Personally diagnosed by me and my team, also loves to post her medication in her telegram channel.
+           *Anxiety
+           *Depression
+           *BPD (Borderline personality disorder)
+           *NPD (Narcissistic Personality Disorder)
+           *schizophrenia
+ 
+
+
+ » Address: 708 cresta mira drive el paso texas 79912 (confirmed having people doordash her food.)
+            *6521 loma de cristo drive el paso texas 79912 (dads address confirmed having people doordash her food.)
+
+
+ » Number: 915-799-7351 (Confirmed off friends, also voicemail contains her voice + "lexi")
+           *Social Media linked.
+           *Facebook (Breached, In facebook 2019 DB)
+           *Instagram
+           *Tiktok
+           *Linkdein
+ 
+ » School: Premier Highschool West
+          * 1035 Belvidere St #116, El Paso, TX 79912
+          * 915-581-4300
+          * Campus Director: Ernesto Morales
+
+» Linkdein: https://www.linkedin.com/in/alexis-ruiz-37a7a7318
+» Instagram:https://www.instagram.com/alexis.rrrrr (Not confirmed recieved off number.)
+» Telegram: @chasityxdd
+» Discord User dumosity ID: 1289118921600798766 
+» Roblox: https://www.roblox.com/users/2336922110/profile
+╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                             - Mothers Information -                            		          ║
+╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+According to 3rd parties lexi has spoken to, her mother is no longer in her life and she has been abused
+by her mother all alleged not confirmed. (seems like father was the abusive one since he was charged for child abuse.)
+
+» Name: MARTINEZ, CASTELLIA VANESSA (According to Civil case records gathered off searching "alexis ruiz in court records".)
+» Other Observed names:
+          *castellia b martinez
+          *castellia n ruiz
+          *castellia v martinez
+          *castellia v ruiz
+          *castellia vanessa martinez
+          *castellia vanessa ruiz
+          *vanessa v martinez
+          *vanessa v ruiz
+          *vannessa v martinez
+
+» Relatives:
+          * adrian javier ruiz
+          * adrienne nicole ruiz
+          * annisa ruiz
+          * brittany lynn ruiz
+          * che ruiz
+          * christopher allen ruiz
+          * fabian martinez
+          * faye ruiz
+          * jose luis chavez martinez
+          * laura alicia ruiz
+          * press a martinez
+          * pricilla e martinez
+          * priscilla estela vega
+          * raul v ruiz
+          * rosa estela martinez
+          * rosario e martinez
+          * ruth s ruiz
+
+
+» Possible Number:915-841-9656
+
+
+(No other confirmable information could be gathered shes just a ghost.)
+
+
+Register of Actions
+Case No. 2013DCM1315
+In the Interest of ALEXIS RUIZ,JAMES RUIZ	§
+
+Case Type:	Modification (AG)
+Date Filed:	10/02/2023
+Location:	388th District Court
+Related Case Information
+Related Cases
+2013DCM1315 (Related Case)
+2013DCM1315 (Related Case)
+2013dcm1315 (Related Case)
+2013DCM1315 (Related Case)
+Party Information
+Lead Attorneys
+Attorney General	TEXAS ATTORNEY GENERAL			
+ 
+Custodial Parent	MARTINEZ, CASTELLIA VANESSA			
+ 
+Minor Child	RUIZ, ALEXIS JOVHANNA			
+ 
+Minor Child	RUIZ, JAMES ANDRE			
+ 
+Non-Custodial Parent	RUIZ, ADRIAN JAVIER			
+ 
+Plaintiff	State of Texas			OFFICE OF THE ATTORNEY GENERAL
+  Retained
+800-252-8014(W)
+Events & Orders of the Court
+ 	 	 	DISPOSITIONS
+04/22/2024
+ 	 	ORDER TO MODIFY (Judicial Officer: Strathmann, Laura)
+Comment (ORDER IN SUIT FOR MODIFICATION OF SUPPORT ORDER AND TO CONFIRM SUPPORT ARREARAGE/ SENSITIVE DATA/ SIGNED 4/22/2024 / JA)
+ 	 	 	
+ 	 	 	OTHER EVENTS AND HEARINGS
+10/02/2023	 	 	Motion to Modify/Enforcement AG
+11/15/2023	 	 	Order Setting Hearing       Index # 1 (Judicial Officer: Strathmann, Laura )
+12/05/2023	 	 	
+Citation	
+RUIZ, ADRIAN JAVIER	
+Served	12/09/2023	
+Response Due	01/01/2024	
+Returned	12/12/2023	
+12/05/2023	 	 	
+Citation	
+MARTINEZ, CASTELLIA VANESSA	Returned Unserved  02/26/2024
+Returned	02/26/2024	
+01/03/2024	 	 	Court Status Check  (4:00 PM) (Judicial Officer Gonzalez, Marlene)
+02/08/2024	 	 	Notice Setting Hearing       Index # 2 (Judicial Officer: Strathmann, Laura )
+02/08/2024	 	 	Notice of Dismissal Hearing       Index # 3
+02/08/2024	 	 	Notice of Dismissal Hearing       Index # 4
+04/22/2024	 	 	Order to Modify       Index # 5 (Judicial Officer: Strathmann, Laura )
+04/29/2024	 	 	CANCELED   Entry of Judgment Hearing  (4:00 PM) (Judicial Officer Strathmann, Laura)
+Court Coordinator Discretionary Cancellation
+02/07/2024	Reset by Court to 04/18/2024
+04/18/2024	Reset by Court to 04/29/2024
+
+
+═════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+
+Register of Actions
+Case No. 2013DCM1315
+In the Interest of J.R., A Child	§
+§
+§
+§
+§
+Case Type:	Parent Child - Non-Divorce
+Date Filed:	10/21/2014
+Location:	388th District Court
+Related Case Information
+Related Cases
+2013DCM1315 (Related Case)
+2013DCM1315 (Related Case)
+2013dcm1315 (Related Case)
+2013DCM1315 (Related Case)
+Party Information
+Lead Attorneys
+LUIS YANEZ
+Retained
+915-503-2424(W)
+ 
+Minor Child	RUIZ, ALEXIS JOVHANNA			
+ 
+Minor Child	RUIZ, JAMES ANDRE			
+ 
+ 
+ 
+Petitioner	RUIZ, ADRIAN JAVIER			
+ 
+ 
+Respondent	MARTINEZ, CASTELLIA VANESSA			
+ 
+Events & Orders of the Court
+ 	 	 	DISPOSITIONS
+01/08/2020
+ 	 	Order for Parent-Child Relationship (Judicial Officer: Strathmann, Laura)
+Comment (SIGNED 1.8.20/ AP)
+12/20/2022
+ 	 	Order for Parent-Child Relationship (Judicial Officer: Gonzalez, Marlene)
+Comment (ORDER ON PETITION TO ENFORCE ORDER IN SUIT TO MODIFY PARENT-CHILD RELATIONSHIP/SIGNED ON 12.16.2022/SENSITIVE DATA/JR)
+06/08/2023
+ 	 	Default Judgment (Judicial Officer: Lucas, James)
+Comment (DEFAULT ORDER ON AMENDED PETITION TO ENFORCE ORDER IN SUIT TO MODIFY PARENT-CHILD RELATIONSHIP / SENSITIVE DATA / SIGNED 06/08/2023 / SH)
+ 	 	 	
+ 	 	 	OTHER EVENTS AND HEARINGS
+10/20/2014	 	 	Case Information Sheet       Index # 3
+10/21/2014	 	 	Petition in Suit Affecting Parent-Child Relationship       Index # 1
+11/17/2014	 	 	Motion to Quash       Index # 4
+11/18/2014	 	 	Status Conference  (10:00 AM) ()
+11/18/2014	 	 	Order Setting Hearing       Index # 5 (Judicial Officer: Locke, Michele L. )
+11/18/2014	 	 	Order Setting Hearing       Index # 6 (Judicial Officer: Locke, Michele L. )
+11/19/2014	 	 	Amended Petition       Index # 7
+12/12/2014	 	 	Entry of Judgment Hearing  (9:30 AM) ()
+12/19/2014	 	 	Status Conference  (10:00 AM) ()
+01/22/2015	 	 	Status Conference  (11:00 AM) (Judicial Officer Locke, Michele L.)
+03/03/2015	 	 	Status Conference  (1:30 PM) (Judicial Officer Locke, Michele L.)
+Result: Set for Final Pre-Trial
+03/03/2015	 	 	Answer       Index # 10
+03/03/2015	 	 	Counter Petition       Index # 11
+03/03/2015	 	 	Report to the Court       Index # 12
+03/03/2015	 	 	Order Setting Hearing       Index # 13 (Judicial Officer: Locke, Michele L. )
+03/03/2015	 	 	Order for Referral to Mediation
+03/18/2015	 	 	Objection to Assigned Judge       Index # 14
+03/24/2015	 	 	Hearing Request Form       Index # 15 (Judicial Officer: Locke, Michele L. )
+03/24/2015	 	 	Order Setting Hearing       Index # 16 (Judicial Officer: Locke, Michele L. )
+04/01/2015	 	 	CANCELED   Temporary Orders Hearing  (11:00 AM) (Judicial Officer Locke, Michele L.)
+Cancelled Pending Reset
+04/02/2015	 	 	Report to the Court       Index # 17
+04/02/2015	 	 	Report to the Court       Index # 18
+04/10/2015	 	 	Certificate of Completion       Index # 19
+05/01/2015	 	 	Report to the Court       Index # 20
+05/05/2015	 	 	Order Setting Hearing       Index # 22 (Judicial Officer: Locke, Michele L. )
+05/05/2015	 	 	Hearing Request Form       Index # 23 (Judicial Officer: Rodriguez, Jesus )
+05/07/2015	 	 	Miscellaneous Order       Index # 24 (Judicial Officer: Rodriguez, Jesus )
+05/08/2015	 	 	Ex Parte Hearing  (9:30 AM) (Judicial Officer Rodriguez, Jesus)
+05/08/2015	 	 	Subpoena Return by Attorney       Index # 25
+05/14/2015	 	 	Motion for Continuance       Index # 26
+05/15/2015	 	 	CANCELED   Ex Parte Hearing  (1:30 PM) (Judicial Officer Rodriguez, Jesus)
+Cancelled Pending Reset
+05/15/2015	 	 	Ex Parte Hearing  (1:30 PM) (Judicial Officer Locke, Michele L.)
+05/15/2015	 	 	CANCELED   Hearing On A Status  (1:30 PM) (Judicial Officer Locke, Michele L.)
+Cancelled Pending Reset
+05/15/2015	 	 	Miscellaneous Order       Index # 27 (Judicial Officer: Locke, Michele L. )
+05/15/2015	 	 	Temporary Order       Index # 28 (Judicial Officer: Locke, Michele L. )
+05/15/2015	 	 	Order Appointing Attorney Ad Litem       Index # 29 (Judicial Officer: Locke, Michele L. )
+05/19/2015	 	 	Order
+05/27/2015	 	 	Hearing Request Form       Index # 31 (Judicial Officer: Gutierrez, Yahara L. )
+06/02/2015	 	 	Report to the Court       Index # 32
+06/03/2015	 	 	Order
+06/04/2015	 	 	Certificate of Deposition       Index # 33
+06/05/2015	 	 	Motion       Index # 34
+06/08/2015	 	 	Order Setting Hearing       Index # 35 (Judicial Officer: Locke, Michele L. )
+06/09/2015	 	 	Order Setting Hearing       Index # 37 (Judicial Officer: Locke, Michele L. )
+06/10/2015	 	 	Amended Order       Index # 38 (Judicial Officer: Gutierrez, Yahara L. )
+06/11/2015	 	 	
+Citation	
+RUIZ, VANESSA	
+Served	06/11/2015	
+Response Due	07/06/2015	
+Returned	06/12/2015	
+06/12/2015	 	 	CANCELED   Motion Hearing  (9:45 AM) (Judicial Officer Locke, Michele L.)
+Other
+06/16/2015	 	 	CANCELED   Motion Hearing  (8:30 AM) (Judicial Officer Locke, Michele L.)
+Cancelled Pending Reset
+06/16/2015	 	 	Motion Requesting       Index # 39
+06/19/2015	 	 	Motion       Index # 40
+06/23/2015	 	 	CANCELED   Enforcement Hearing  (1:30 PM) (Judicial Officer Locke, Michele L.)
+Other
+06/25/2015	 	 	Order Setting Hearing       Index # 41 (Judicial Officer: Gutierrez, Yahara L. )
+06/25/2015	 	 	Hearing Request Form       Index # 42 (Judicial Officer: Gutierrez, Yahara L. )
+06/30/2015	 	 	Response       Index # 44
+07/06/2015	 	 	Report to the Court       Index # 45
+07/10/2015	 	 	Response       Index # 47
+07/13/2015	 	 	Motion to Recuse Judge  (11:30 AM) (Judicial Officer Gutierrez, Yahara L.)
+Result: Reset
+07/13/2015	 	 	CANCELED   Attorney's Fees Hearing  (11:30 AM) (Judicial Officer Gutierrez, Yahara L.)
+Court Coordinator Discretionary Cancellation
+07/14/2015	 	 	Order Setting Hearing       Index # 48 (Judicial Officer: Gutierrez, Yahara L. )
+07/20/2015	 	 	Notice of Non-Suit       Index # 50
+07/20/2015	 	 	Order to Transfer       Index # 51
+07/24/2015	 	 	CANCELED   Motion to Recuse Judge  (1:30 PM) (Judicial Officer Gutierrez, Yahara L.)
+Transferred
+07/27/2015	 	 	CANCELED   Final Hearing  (1:30 PM) (Judicial Officer Locke, Michele L.)
+Cancelled Pending Reset
+07/31/2015	 	 	Report to the Court       Index # 52
+08/14/2015	 	 	Motion for Temporary Order       Index # 55
+08/17/2015	 	 	Amended Motion       Index # 56
+08/19/2015	 	 	Subpoena Return by Attorney       Index # 57
+08/26/2015	 	 	Motion for Protective Order       Index # 58
+08/27/2015	 	 	Temporary Orders Hearing  (8:30 AM) (Judicial Officer Strathmann, Laura)
+08/21/2015	Reset by Court to 08/27/2015
+Result: Reset
+08/27/2015	 	 	Entry of Judgment Hearing  (8:30 AM) (Judicial Officer Strathmann, Laura)
+08/27/2015	 	 	Subpoena Return by Attorney       Index # 59
+08/27/2015	 	 	Agreed Order       Index # 60 (Judicial Officer: Strathmann, Laura )
+08/31/2015	 	 	Hearing Request Form       Index # 61 (Judicial Officer: Strathmann, Laura )
+09/02/2015	 	 	Notice Setting Hearing       Index # 62 (Judicial Officer: Strathmann, Laura )
+09/02/2015	 	 	Notice Setting Hearing       Index # 63 (Judicial Officer: Strathmann, Laura )
+09/02/2015	 	 	Notice Setting Hearing       Index # 64 (Judicial Officer: Strathmann, Laura )
+09/04/2015	 	 	Subpoena Return by Attorney       Index # 65
+09/09/2015	 	 	Motion Hearing  (8:00 AM) (Judicial Officer Strathmann, Laura)
+Result: Reset
+09/10/2015	 	 	Temporary Order       Index # 66 (Judicial Officer: Strathmann, Laura )
+09/10/2015	 	 	Temporary Order       Index # 67 (Judicial Officer: Strathmann, Laura )
+09/11/2015	 	 	Subpoena Return by Attorney       Index # 68
+09/11/2015	 	 	Subpoena Return by Attorney       Index # 69
+09/11/2015	 	 	Subpoena Return by Attorney       Index # 70
+09/14/2015	 	 	CANCELED   De Novo Hearing  (8:00 AM) (Judicial Officer Gutierrez, Yahara L.)
+Court Coordinator Discretionary Cancellation
+07/10/2015	Continued to 09/14/2015 - Defense Request - MARTINEZ, CASTELLIA VANESSA
+09/15/2015	 	 	Motion Hearing  (12:00 PM) (Judicial Officer Strathmann, Laura)
+Result: Heard
+09/16/2015	 	 	Motion Hearing  (12:00 PM) (Judicial Officer Strathmann, Laura)
+Result: Continued
+09/16/2015	 	 	Notice Setting Hearing       Index # 71 (Judicial Officer: Strathmann, Laura )
+09/21/2015	 	 	Motion to Enforce (non OCA)
+09/25/2015	 	 	Motion to Compel       Index # 73
+09/28/2015	 	 	Hearing Request Form       Index # 74 (Judicial Officer: Strathmann, Laura )
+10/07/2015	 	 	Notice of Filing       Index # 75 (Judicial Officer: Strathmann, Laura )
+10/09/2015	 	 	Report to the Court       Index # 76 (Judicial Officer: Strathmann, Laura )
+10/13/2015	 	 	Hearing Request Form       Index # 77 (Judicial Officer: Strathmann, Laura )
+10/29/2015	 	 	CANCELED   Temporary Orders Hearing  (2:30 PM) (Judicial Officer Strathmann, Laura)
+Cancelled Pending Reset
+10/29/2015	 	 	CANCELED   Motion to Compel Hearing  (4:00 PM) (Judicial Officer Strathmann, Laura)
+Cancelled Pending Reset
+11/03/2015	 	 	Hearing Request Form       Index # 78 (Judicial Officer: Strathmann, Laura )
+11/16/2015	 	 	Notice of Filing       Index # 79 (Judicial Officer: Strathmann, Laura )
+11/19/2015	 	 	Notice       Index # 80
+12/07/2015	 	 	Motion       Index # 81
+12/07/2015	 	 	Hearing Request Form       Index # 82 (Judicial Officer: Strathmann, Laura )
+12/07/2015	 	 	Motion for Continuance       Index # 83
+12/08/2015	 	 	Enforcement Hearing  (1:30 PM) (Judicial Officer Strathmann, Laura)
+10/29/2015	Reset by Court to 12/08/2015
+12/08/2015	 	 	Miscellaneous Order       Index # 84 (Judicial Officer: Strathmann, Laura )
+12/09/2015	 	 	Notice Setting Hearing       Index # 85 (Judicial Officer: Strathmann, Laura )
+12/11/2015	 	 	Motion to Withdraw       Index # 86
+12/18/2015	 	 	Hearing Request Form       Index # 87 (Judicial Officer: Strathmann, Laura )
+01/07/2016	 	 	Notice of Filing       Index # 88 (Judicial Officer: Strathmann, Laura )
+01/08/2016	 	 	Motion Hearing  (2:00 PM) (Judicial Officer Strathmann, Laura)
+Result: Agreed
+01/08/2016	 	 	Motion to Withdraw Attorney  (8:30 AM) (Judicial Officer Strathmann, Laura)
+Result: Granted
+01/08/2016	 	 	Order Permitting Withdrawl of Counsel       Index # 89 (Judicial Officer: Strathmann, Laura )
+01/08/2016	 	 	Interim Order       Index # 90 (Judicial Officer: Strathmann, Laura )
+Page JA
+01/14/2016	 	 	Notice of Filing       Index # 91 (Judicial Officer: Strathmann, Laura )
+01/14/2016	 	 	Notice Setting Hearing       Index # 92 (Judicial Officer: Strathmann, Laura )
+01/27/2016	 	 	Hearing Request Form       Index # 93 (Judicial Officer: Strathmann, Laura )
+02/04/2016	 	 	Order
+02/29/2016	 	 	Motion Hearing  (8:30 AM) (Judicial Officer Strathmann, Laura)
+01/27/2016	Reset by Court to 02/29/2016
+02/29/2016	 	 	Final Hearing  (8:30 AM) (Judicial Officer Strathmann, Laura)
+02/29/2016	 	 	Notice Setting Hearing       Index # 94 (Judicial Officer: Strathmann, Laura )
+02/29/2016	 	 	Notice Setting Hearing       Index # 95 (Judicial Officer: Strathmann, Laura )
+03/14/2016	 	 	Final Hearing  (8:30 AM) (Judicial Officer Strathmann, Laura)
+Result: Agreed
+03/14/2016	 	 	Entry of Order Hearing  (8:30 AM) (Judicial Officer Strathmann, Laura)
+03/15/2016	 	 	Notice Setting Hearing       Index # 96 (Judicial Officer: Strathmann, Laura )
+03/17/2016	 	 	Designation of Attorney in Charge       Index # 97
+04/04/2016	 	 	Hearing Request Form       Index # 98 (Judicial Officer: Strathmann, Laura )
+04/11/2016	 	 	Motion for Continuance       Index # 99
+04/12/2016	 	 	CANCELED   Modification Hearing  (10:00 AM) (Judicial Officer Strathmann, Laura)
+Cancelled Pending Reset
+04/18/2016	 	 	CANCELED   Entry of Judgment Hearing  (9:00 AM) (Judicial Officer Strathmann, Laura)
+Agreed
+04/18/2016	 	 	Hearing Request Form       Index # 100 (Judicial Officer: Strathmann, Laura )
+04/18/2016	 	 	Hearing Request Form       Index # 101 (Judicial Officer: Strathmann, Laura )
+05/13/2016	 	 	Entry of Judgment Hearing  (1:30 PM) (Judicial Officer Strathmann, Laura)
+06/08/2016	 	 	Order Setting Hearing       Index # 102 (Judicial Officer: Strathmann, Laura )
+06/17/2016	 	 	Hearing Request Form       Index # 103 (Judicial Officer: Strathmann, Laura )
+06/21/2016	 	 	CANCELED   Final Hearing  (1:30 PM) (Judicial Officer Strathmann, Laura)
+Cancelled Pending Reset
+06/24/2016	 	 	Entry of Judgment Hearing  (9:00 AM) (Judicial Officer Strathmann, Laura)
+06/17/2016	Reset by Court to 06/24/2016
+07/12/2016	 	 	Hearing Request Form       Index # 104 (Judicial Officer: Strathmann, Laura )
+07/20/2016	 	 	Order to Modify       Index # 105 (Judicial Officer: Strathmann, Laura )
+07/26/2016	 	 	Motion to Enter       Index # 106
+07/27/2016	 	 	Hearing Request Form       Index # 107 (Judicial Officer: Strathmann, Laura )
+08/30/2016	 	 	Notice       Index # 108 (Judicial Officer: Strathmann, Laura )
+09/02/2016	 	 	CANCELED   Motion Hearing  (10:30 AM) (Judicial Officer Strathmann, Laura)
+Other
+09/21/2016	 	 	Hearing Request Form       Index # 109 (Judicial Officer: Strathmann, Laura )
+11/01/2016	 	 	Final Hearing  (10:00 AM) (Judicial Officer Strathmann, Laura)
+10/07/2016	Reset by Court to 11/01/2016
+11/02/2016	 	 	Hearing Request Form       Index # 110 (Judicial Officer: Strathmann, Laura )
+02/22/2017	 	 	CANCELED   Final Hearing  (9:00 AM) (Judicial Officer Strathmann, Laura)
+Cancelled Pending Reset
+02/23/2017	 	 	Hearing Request Form       Index # 111 (Judicial Officer: Strathmann, Laura )
+04/26/2017	 	 	Hearing Request Form       Index # 112 (Judicial Officer: Strathmann, Laura )
+05/02/2017	 	 	CANCELED   Final Hearing  (1:30 PM) (Judicial Officer Strathmann, Laura)
+Cancelled Pending Reset
+05/26/2017	 	 	Hearing Request Form       Index # 113 (Judicial Officer: Strathmann, Laura )
+09/22/2017	 	 	CANCELED   Final Hearing  (8:00 AM) (Judicial Officer Strathmann, Laura)
+Agreed
+12/18/2017	 	 	Motion for Continuance       Index # 114
+12/21/2017	 	 	Hearing Request Form       Index # 116 (Judicial Officer: Rodriguez, Jesus )
+12/27/2017	 	 	Motion for Continuance Hearing  (8:00 AM) (Judicial Officer Rodriguez, Jesus)
+Result: Granted
+12/27/2017	 	 	Motion for Substitute Counsel       Index # 115
+01/03/2018	 	 	Final Hearing  (8:30 AM) (Judicial Officer Strathmann, Laura)
+01/22/2018	 	 	Hearing Request Form       Index # 117 (Judicial Officer: Rodriguez, Jesus )
+01/23/2018	 	 	Notice Setting Hearing       Index # 118 (Judicial Officer: Strathmann, Laura )
+02/08/2018	 	 	Notice Setting Hearing       Index # 119 (Judicial Officer: Strathmann, Laura )
+04/03/2018	 	 	Notice of Cancelling Hearing       Index # 120
+04/17/2018	 	 	CANCELED   Modification Hearing  (1:30 PM) (Judicial Officer Strathmann, Laura)
+Court Coordinator Discretionary Cancellation
+07/23/2018	 	 	Notice Setting Hearing       Index # 121 (Judicial Officer: Strathmann, Laura )
+07/24/2018	 	 	Modification Hearing  (8:30 AM) (Judicial Officer Strathmann, Laura)
+01/07/2019	 	 	Motion to Compel       Index # 122
+01/07/2019	 	 	Motion for Continuance       Index # 123
+01/10/2019	 	 	Hearing Request Form       Index # 124 (Judicial Officer: Strathmann, Laura )
+01/11/2019	 	 	Motion for Continuance Hearing  (10:00 AM) (Judicial Officer Strathmann, Laura)
+Result: Denied
+01/17/2019	 	 	Final Hearing or Dismissal  (1:30 PM) (Judicial Officer Strathmann, Laura)
+Result: Heard
+01/18/2019	 	 	Notice Setting Hearing       Index # 125 (Judicial Officer: Strathmann, Laura )
+01/18/2019	 	 	Order
+03/07/2019	 	 	Notice Setting Hearing       Index # 126 (Judicial Officer: Strathmann, Laura )
+03/27/2019	 	 	Hearing Request Form       Index # 127 (Judicial Officer: Strathmann, Laura )
+04/11/2019	 	 	Judge's Conference  (8:00 AM) (Judicial Officer Strathmann, Laura)
+03/26/2019	Reset by Court to 04/11/2019
+Result: Cancelled
+05/21/2019	 	 	Hearing Request Form       Index # 128 (Judicial Officer: Strathmann, Laura )
+05/24/2019	 	 	Court Status Check  (1:30 PM) (Judicial Officer Strathmann, Laura)
+09/13/2019	 	 	Judge's Conference  (3:30 PM) (Judicial Officer Strathmann, Laura)
+10/25/2019	 	 	Entry of Judgment Hearing  (10:00 AM) (Judicial Officer Strathmann, Laura)
+Result: Appeared
+10/29/2019	 	 	Hearing Request Form       Index # 129 (Judicial Officer: Strathmann, Laura )
+11/22/2019	 	 	Notice to Counsel       Index # 130 (Judicial Officer: Strathmann, Laura )
+11/25/2019	 	 	Hearing Request Form       Index # 131 (Judicial Officer: Strathmann, Laura )
+12/20/2019	 	 	Entry of Judgment Hearing  (10:30 AM) (Judicial Officer Strathmann, Laura)
+11/25/2019	Reset by Court to 12/20/2019
+Result: Complied
+01/08/2020	 	 	Order in Suit Affecting Parent-Child Relationship       Index # 132 (Judicial Officer: Strathmann, Laura )
+10/06/2022	 	 	Motion to Enforce (OCA)       Index # 133
+11/03/2022	 	 	Order to Appear (Judicial Officer: Gonzalez, Marlene )
+11/03/2022	 	 	Order to Appear (Judicial Officer: Gonzalez, Marlene )
+11/04/2022	 	 	Request       Index # 134
+11/04/2022	 	 	Request       Index # 135
+11/04/2022	 	 	Request       Index # 136
+11/04/2022	 	 	Request       Index # 137
+11/09/2022	 	 	
+Citation	
+CASTELLIA, VANESSA RUIZ	Unserved
+RUIZ, ADRIAN JAVIER	
+Served	11/12/2022	
+Response Due	12/05/2022	
+Returned	11/15/2022	
+11/09/2022	 	 	
+Notice to Show Cause	
+RUIZ, ADRIAN JAVIER	
+Served	11/12/2022	
+Returned	11/15/2022	
+11/09/2022	 	 	
+Notice to Show Cause	
+CASTELLIA, VANESSA RUIZ	Unserved
+12/05/2022	 	 	Enforcement Hearing  (10:30 AM) ()
+12/16/2022	 	 	Order Setting Hearing       Index # 140 (Judicial Officer: Gonzalez, Marlene )
+12/16/2022	 	 	Order to Appear (Judicial Officer: Gonzalez, Marlene )
+12/16/2022	 	 	Request       Index # 141
+12/19/2022	 	 	Contested Entry of Judgment  (2:30 PM) ()
+12/19/2022	 	 	
+Notice to Show Cause	
+CASTELLIA, VANESSA RUIZ	Unserved
+12/20/2022	 	 	Order
+01/03/2023	 	 	Order to Appear
+01/05/2023	 	 	Request       Index # 142
+01/06/2023	 	 	
+Notice to Show Cause	
+CASTELLIA, VANESSA RUIZ	Unserved
+01/09/2023	 	 	CANCELED   Enforcement Hearing  (9:00 AM) ()
+Cancelled Pending Reset
+03/02/2023	 	 	Amended Petition       Index # 143
+03/06/2023	 	 	Motion for Substitute Service       Index # 144
+03/07/2023	 	 	CANCELED   Enforcement Hearing  (9:30 AM) ()
+Cancelled Pending Reset
+03/07/2023	 	 	Order for Substitute Service       Index # 145 (Judicial Officer: Gonzalez, Marlene )
+03/07/2023	 	 	Request       Index # 146
+03/10/2023	 	 	
+Citation	
+CASTELLIA, VANESSA RUIZ	
+Served	04/01/2023	
+Response Due	04/24/2023	
+Returned	04/14/2023	
+04/12/2023	 	 	Court Status Check  (4:00 PM) (Judicial Officer Gonzalez, Marlene)
+04/14/2023	 	 	Affidavit of Service       Index # 147
+04/28/2023	 	 	Order Setting Hearing       Index # 148
+06/08/2023	 	 	Enforcement Hearing  (8:30 AM) ()
+06/08/2023	 	 	Referral Order       Index # 149 (Judicial Officer: Gonzalez, Marlene )
+06/08/2023	 	 	Default Judgment
+06/12/2023	 	 	Notice of Default Judgment       Index # 150
+08/08/2023	 	 	Returned Mail       Index # 151
+09/13/2023	 	 	CANCELED   Court Status Check  (4:00 PM) (Judicial Officer Gonzalez, Marlene)
+Other
+03/22/2024	 	 	Order Setting Hearing       Index # 152 (Judicial Officer: Lucas, James )
+04/05/2024	 	 	Motion Hearing  (10:00 AM) (Judicial Officer Lucas, James)
+04/05/2024	 	 	Order Setting Hearing       Index # 153 (Judicial Officer: Lucas, James )
+05/06/2024	 	 	Motion Hearing  (2:30 PM) (Judicial Officer Lucas, James)
+05/08/2024	 	 	Motion for Judgment Nunc Pro Tunc       Index # 154
+05/09/2024	 	 	Order Nunc Pro Tunc       Index # 155 (Judicial Officer: Lucas, James )
+05/09/2024	 	 	Order
+09/10/2025	 	 	Motion to Modify       Index # 156
+09/10/2025	 	 	Request       Index # 157
+09/17/2025	 	 	
+Citation	
+CASTELLIA, VANESSA RUIZ	Unserved
+09/22/2025	 	 	Referral Order       Index # 158 (Judicial Officer: Gonzalez, Marlene )
+12/10/2025	 	 	Court Status Check  (4:00 PM) (Judicial Officer Lucas, James)
+╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                             - Fathers information -            		                          ║
+╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+» Name: Adrian Javier ruiz
+» Other observed names: Adrian Valadez Ruiz	
+            *Adrian Javi Lovelace
+            *Ian Ruiz Adru
+
+
+» DOB: Age 52 (1973)
+
+» Height: 5'11 (According to Arrest records confirmed.)
+» Weight: 220  (According to Arrest records confirmed.)
+
+
+
+
+Number: 915-760-1699
+          *(915) 313-4453
+          *(915) 584-2986
+            
+
+» Address:6521 loma de cristo drive el paso texas 79912 (current)
+            *6305 Franklin Crest Dr, El Paso, TX 79912
+            *PO Box 971176, El Paso, TX 79997
+            *840 E Redd Rd Unit 1, El Paso, TX 79912
+            *6425 Franklin Gate Dr, El Paso, TX 79912
+            *425 Irondale Dr Unit O, El Paso, TX 79912
+            *2117 Windrock St, El Paso, TX 79925
+
+
+» Relatives:
+           *Adriana Crosby
+           *Brittany Lopez
+           *Rosa Lovelace
+           *Aaron Ruiz
+           *Abraham Ruiz
+           *Adrian Ruiz
+           *Ana Ruiz
+           *Ana Ruiz
+           *Ana Ruiz
+           *Ana Ruiz
+           *Annisa Ruiz
+           *Castellia Ruiz
+           *Damien Ruiz
+           *Dominick Ruiz
+           *Elias Ruiz
+           *Elias Ruiz
+           *Jimmy Ruiz
+           *Lidia Ruiz
+           *Gustavo Hernandez
+           *David Ruiz
+           *Guadalupe Ruiz
+           *Esther Castillo
+           *Michelle Ruiz
+           *Marilyn H Lovelace
+           *Teresa Ruiz
+           *William C Lovelace
+           *Rosa E Martinez
+           *David W Lovelace
+           *Richard Lovelace
+           *David R Flores
+           *Hortencia Ochoa
+
+
+» Arrest Records:
+          *Booking #: 9634829	El Paso Police Department
+          *Facility: Downtown Jail	Booked: 06/23/2015	Released: 06/23/2015
+          *Name	RUIZ, ADRIAN JAVIER	Desc	White  Male  5' 11"   220 lbs   
+          *Alias	RUIZ, ADRIAN; VALADEZ	Hair	Brown
+          *SO #	9594857	Eyes	Brown
+          *Address	EL PASO, TX 79912
+          *Warrant #	Charge	Issuing Auth	Offense Date	Bond/Type	Fine/Crt Costs	Disposition
+          *M15W4486	INJ TO CHILD W INT BODILY INJURY	MC5A	03/20/2015	
+          *7,500.00
+          *Cash or Surety
+          *Surety Bond Poste
+╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                             - Grandmothers information -            		                    ║
+╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+» Name: Rosa Emma Lovelace
+» Other observed names: Rosa lovelace
+            *Rosa E lovelace
+            *Richard maria
+
+
+» DOB: 81 (1944)
+
+» Height: (Inaccessible no criminal records.)
+» Weight: (Inaccessible no criminal records.)
+
+
+» Number: 915-867-1414
+          *956-618-3970         
+          *915-584-0637
+          *915-584-2817
+          *915-751-4655
+          *956-618-1395
+
+
+» Address:708 Cresta Mira Dr, El Paso, TX 79912 (current)
+          *3409 N 10Th St Unit 100, McAllen, TX 78501
+          *700 El Parque Dr, El Paso, TX 79912
+          *3508 Sirius Ave, El Paso, TX 79904
+          *6008 N 36Th Ln, McAllen, TX 78504
+          *200 E Garcia St, Pharr, TX 78577
+          *PO Box 3727, El Paso, TX 79923
+          
+
+
+» Relatives:	
+           *David Lovelace
+           *Marilyn Lovelace
+           *Richard Lovelace
+           *Adrian Ruiz
+           *Arturo Munoz
+           *Abraham Ruiz
+           *Elvira Munoz
+           *David Lovelace
+           *Mrsdavid M Lovelace
+           *Teresa Ruiz
+           *Michelle Ruiz
+           *William C Lovelace
+
+
+» Court Records:
+
+
+El Paso County, Texas Court Record
+Register of Actions
+Case No. 83-5226
+CENICEROS, ALFREDO And CENICEROS, GRACE vs. LOVELACE, ROSA EMMA	§
+
+Case Type:	Contract - Consumer/Commercial/Debt
+Date Filed:	07/26/1983
+Location:	210th District Court
+Party Information
+Lead Attorneys
+Defendant	LOVELACE, ROSA EMMA			
+Plaintiff	CENICEROS, ALFREDO			
+Plaintiff	CENICEROS, GRACE			
+Events & Orders of the Court
+DISPOSITIONS
+04/12/1990
+Dismissed for Want of Prosecution (Judicial Officer: Conversion, Conversion)
+Converted Disposition:
+Party: CENICEROS, ALFREDO Disposition: DIS WANT OF PRO
+Party(	
+CENICEROS, ALFREDO )
+Judgment: () - Other Judgment Amt: 0.00 042690
+Vol./Book 86, Page 248, 1 pages
+OTHER EVENTS AND HEARINGS
+07/26/1983			Original JIMS Conversion
+08/25/1986			Response
+01/04/1990			Notice of Intent Dismiss
+01/09/1990			Notice of Intent Dismiss
+02/16/1990			Dismissal Hearing (8:00 AM) (Judicial Officer Garcia, Gonzalo)
+03/07/1990			Order for Rule 165A of the TX Rules of Civil Procedure
+02/23/2005			Image of Entire Case File
+
+
+Case Number	Style	Filed/Location	Type/Status
+83-5226	CENICEROS, ALFREDO And CENICEROS, GRACE vs. LOVELACE, ROSA EMMA	
+07/26/1983
+210th District Court
+Contract - Consumer/Commercial/Debt
+Closed
+╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                             - Grandfathers information -            		                    ║
+╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+Name arturo munoz according to phone number lookup > 915-630-1625
+No other information could be scraped by us besides relatives.
+
+Relatives:
+          *Rosa Lovelace
+          *Olga Delgado
+          *Anastacio Gutierrez
+          *Dora Munoz
+          *Jesus Munoz
+          *Juana Espinoza-gastelum
+          *Romeo Gonzalez
+          *Dora Gutierrez
+          *Dora Gutierrez
+          *Laura Hallal
+          *Angel Munoz
+          *Arturo Munoz
+          *Arturo Munoz
+          *Arturo Munoz
+          *Arturo Munoz
+          *Arturo Munoz
+          *Christina Munoz
+          *Georgina Munoz
+          *Javier Munoz
+          *Jose Munoz
+          *Julio Munoz
+          *Romeo Munoz
+          *Romeo Munoz
+          *Romeo Munoz
+          *Romeo Munoz
+          *Romeo Munoz
+          *Taryn Munoz
+          *Ernestine Valenzuela</pre>`
+  },
+  entry3: {
+    title: "Ion/Repercing Skid",
+    text: `<pre class="pre-content">┌──────────────────────────────────────────────────────────────┐
+│                          [REASONING]                         │
+├──────────────────────────────────────────────────────────────┤
+│ This post aims to document ongoing and increasingly serious  │
+│ concerns surrounding an individual known online as Ion or    │
+│ Repercing. Formerly the owner of a FiveM server named        │
+│ HoodRich Roleplay, Ion/Repercing has been involved in a      │
+│ range of highly concerning and potentially criminal          │
+│ activities.                                                  │
+│                                                              │
+│ While managing the server, Ion/Repercing implemented a       │
+│ custom script that logged user connection information,       │
+│ including IP addresses and unique identifiers, without user  │
+│ consent. Users who confronted him or did not comply with his │
+│ demands often reported unexplained disruptions to their      │
+│ internet service shortly afterward.                          │
+│                                                              │
+│ He has cultivated a reputation among some as a powerful      │
+│ online figure, though many know him as someone who hides     │
+│ behind a voice changer and anonymity. Despite claiming to be │
+│ untouchable, he was involved in executing malware from an    │
+│ anonymous source, and his attempt to erase evidence by       │
+│ wiping his computer ultimately failed.                       │
+│                                                              │
+│ Of greater concern are the following allegations, which      │
+│ reflect a disturbing pattern of behavior:                    │
+│ * Impersonating a 16-year-old to engage in manipulative      │
+│   online relationships                                       │
+│ * Regularly making graphic and inappropriate jokes involving │
+│   gore and child exploitation                                │
+│ * Possessing and distributing child sexual abuse material    │
+│   (referred to in code as “CP” or “cheese pizza”)            │
+│ * Joking about the possession and sharing of such material,  │
+│   despite repeated warnings and pleas to stop                │
+│ * Sharing explicit content with both minors and adults in    │
+│   online communities                                         │
+│                                                              │
+│ In addition to the above, Ion/Repercing has been reportedly  │
+│ involved in:                                                 │
+│ * Swatting                                                   │
+│ * Blackmail                                                  │
+│ * Doxxing                                                    │
+│ * Extortion                                                  │
+│ * Online threats and harassment                              │
+│                                                              │
+│ He is currently a moderator on SwatWiki.com, a site with     │
+│ access to OSINT tools, which he has allegedly used to dox    │
+│ and intimidate individuals.                                  │
+│                                                              │
+│ These behaviors are not only unethical—they are illegal. The │
+│ allegations involving child exploitation material are        │
+│ extremely serious and should be reported to law enforcement  │
+│ or cybercrime units immediately. This post is intended to    │
+│ bring attention to these ongoing issues and encourage        │
+│ accountability.                                              │
+│                                                              │
+│ If you or someone you know has been affected by              │
+│ Ion/Repercing, we strongly urge you to gather evidence and   │
+│ report it to the appropriate authorities or platform         │
+│ moderation teams.                                            │
+└──────────────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                  MAIN PROFILE                                │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ DOXXED BY       : FlashedToday                                               │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ LEGAL NAME      : Daniel Anderson                                            │
+│ ALIASES         : "Ion", "hackingfatkids", "Krypton",                        │
+│                   "hoodrich.inc", "cxmp", "extractions",                     │
+│                   "shiesty", "Repercing", "detective"                        │
+│ AGE             : 20 (02/01/2005 M/D/Y)                                      │
+│ PHONE NUMBERS   : +1 (786)-498-2042                                          │
+│ ADDRESS         : 6749 Segovia Cir W, Fort Lauderdale, FL 33331              │
+│ PROPERTY INFO   : Residential — 3 Bed / 2 Bath, Single-Family                │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ EMAILS          : bendo68420@gmail.com                                       │
+│                   danielanderson2005@icloud.com                              │
+│                   idomods4200@yahoo.com                                      │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ SOCIALS         :                                                            │
+│    - Discord IDs:                                                            │
+│        • 1146854513601425469 (fakekrypton#0)                                 │
+│        • 537746042419150859 (extractions.#0)                                 │
+│        • 1203383873589747765 (deleted_user_esf1236f3bff159f#0)               │
+│        • 456226577798135808                                                  │
+│        • 260076875173330944 (Mustafia)                                       │
+│    - Snapchat       : @danielanderson7                                       │
+│    - Snapchat (Alt) : @browardcashfl0w                                       │
+│    - Snapchat (Alt) : @iiiiiiiliiilll                                        │
+│    - Instagram      : @gvo.daniel_                                           │
+│    - Instagram (Alt): @gvo_daniel_                                           │
+│    - TikTok         : @drippinroleplay                                       │
+│    - GitHub         : @hackingfatpeople                                      │
+│        • https://github.com/hackingfatpeople/hitreg                          │
+│        • https://github.com/hackingfatpeople/Hoodrich                        │
+│        • https://github.com/hackingfatpeople/IonTate                         │
+│    - Telegram       : @notrepercingg                                         │
+│    - DoxBin         : Repercing                                              │
+│        • https://doxbin.com/user/repercing                                   │
+│    - SwatWiki       : Repercing                                              │
+│        • https://swatwiki.com/u/repercing                                    │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ SPOUSE          : None                                                       │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ MEDIA           :                                                            │
+│    PHOTOS:                                                                   │
+│       » https://files.catbox.moe/alq201.png                                  │
+│       » https://files.catbox.moe/346cnk.png                                  │
+│       » https://files.catbox.moe/r39sms.png                                  │
+│       » https://files.catbox.moe/th4cbn.png                                  │
+│       » https://files.catbox.moe/mekdnn.png                                  │
+│       » https://files.catbox.moe/xx2478.png                                  │
+│                                                                              │
+│    SCREENSHOTS:                                                              │
+│       » https://files.catbox.moe/ovrswa.png                                  │
+│       » https://files.catbox.moe/w0abj4.png                                  │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+
+┌──────────────────────────────────────────────────────────────┐
+│                   MOTHER + GRANDMA                           │
+├──────────────────────────────────────────────────────────────┤
+│ NAME           : Rosely Cheryl Hoffman                       │
+│ LEGAL NAME     : Rosely C Orchard / Rosely C Hoffman         │
+│ ALIASES        : Rosely Orchard, Rosely M Hoffman            │
+│ AGE            : 70-71                                       │
+│ PHONES         :                                             │
+│   - Mobile: +1 (954)-680-4926                                │
+│   - (954) 680-4926 (latest October 2023)                     │
+│   - (754) 322-3400 (August 2023)                             │
+│   - (954) 721-0743 (August 2012)                             │
+│   - (954) 721-4276 (September 2023)                          │
+│   - (954) 476-5767 (September 2023)                          │
+│ EMAILS         : rosann009@yahoo.com, jgs42@aol.com,         │
+│                 sci8@hotmail.com, roselyo@excite.com         │
+│ ADDRESS        :                                             │
+│   - 6749 Segovia Cir W, Fort Lauderdale, FL 33331            │
+│   - 5269 Magellan Way W, Delray Beach, FL 33484              │
+│   - 9347 Wedgewood Dr, Tamarac, FL 33321                     │
+│   - 8245 NW 70th St, Tamarac, FL 33321                       │
+│   - 7411 Po Box, Delray Beach, FL 33482                      │
+│   - 10200 Harbor Inn Pl, Coral Springs, FL 33071             │
+│   - 8245 NW 78th St, Tamarac, FL 33321                       │
+│   - 7967 W Mcnab Rd, Tamarac, FL 33321                       │
+│   - 7245 NW 70th St, Tamarac, FL 33321                       │
+│   - 421441 Po Box, Indianapolis, IN 46242                    │
+│   - 5115 Brandywine Dr Apt 103, Indianapolis, IN 46241       │
+│   - 23340 Ray Ln, Elkhart, IN 46514                          │
+│   - 956 Wilbur Ave, Barberton, OH 44203                      │
+│   - 2405 Foxfire St NW, Uniontown, OH 44685                  │
+│ RELATIVES      :                                             │
+│   - Walter J Orchard                                         │
+│   - Ashley B Hoders                                          │
+│   - David J Hoffman                                          │
+│   - Jami A Orchard                                           │
+│   - Jordan G Hoffman                                         │
+│   - Marilyn Hoffman                                          │
+│   - Mary T Hofmann                                           │
+│   - Richard S Hoffman                                        │
+│   - Walter Orchard                                           │
+│   - Arthur H Hofmann                                         │
+│   - Beth L Hoffman                                           │
+│ PHOTOS         : [SEE ATTACHED]                              │
+└──────────────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────────────────────────────────────┐
+│                   FATHER + GRANDPA                           │
+├──────────────────────────────────────────────────────────────┤
+│ NAME           : Richard Stuart Hoffman                      │
+│ ALIASES        : None                                        │
+│ AGE            : 68                                          │
+│ PHONES         :                                             │
+│   - (305) 610-4926 (Sprint Spectrum LP, Oct 2023)            │
+│   - (954) 680-4926 (Bellsouth, Jul 2014)                     │
+│   - (305) 891-0211 (Bellsouth, Feb 2018)                     │
+│   - (954) 476-5767 (Bellsouth, Sep 2023)                     │
+│   - (570) 646-5443 (Commonwealth Telephone, Sep 2023)        │
+│ EMAILS         :                                             │
+│   - richard.hoffman@worldnet.att.net                         │
+│   - hoffdick@bellsouth.net                                   │
+│   - rhoffman@bhdlawfirm.com                                  │
+│   - hoffmanrm@msx.upmc.edu                                   │
+│   - mandm2233@aol.com                                        │
+│ ADDRESS        :                                             │
+│   - 6749 Segovia Cir W, Fort Lauderdale, FL 33331            │
+│   - 1075 NE 125th St STE 202, North Miami, FL 33161          │
+│   - 1030 NE 204th Ter, North Miami Beach, FL 33179           │
+│   - 11900 Biscayne Blvd STE 310, North Miami, FL 33181       │
+│   - 6749 SW 166th Ave, Southwest Ranches, FL 33331           │
+│   - 2426 Southridge Plz, Hidden Valley, PA 15502             │
+│   - 328 S Linden Ave, Pittsburgh, PA 15208                   │
+│   - 11900 Biscayne Blvd STE 616, North Miami, FL 33181       │
+│   - 1030 NE 204th Ter, Miami, FL 33179                       │
+│   - 6749 166th Dr SW, Pembroke Pines, FL 33028               │
+│   - 1175 NE 125th St, North Miami, FL 33161                  │
+│ PHOTOS         : [SEE ATTACHED]                              │
+└──────────────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────────────────────────────────────┐
+│                           RELATIVE                           │
+├──────────────────────────────────────────────────────────────┤
+│ NAME           : Jordan G Hoffman                            │
+│ AGE            : 36                                          │
+│ PHONE NUMBERS  :                                             │
+│   - (954) 594-1702 (Sprint Spectrum LP, Oct 2023)            │
+│   - (954) 483-7131 (Sprint Spectrum LP, Jun 2011)            │
+│   - (954) 476-5767 (Bellsouth, Aug 2023)                     │
+│   - (570) 646-5443 (Commonwealth Telephone, Sep 2023)        │
+│   - (954) 721-4276 (Bellsouth, Sep 2023)                     │
+│   - (954) 583-1656 (Sprint Spectrum LP, Aug 2023)            │
+│   - (954) 725-8847 (Sprint Spectrum LP, Sep 2023)            │
+│ EMAILS         : jghoffman@thehoffmanfirm.com                │
+│ ADDRESS        :                                             │
+│   - 6749 Segovia Cir W, Fort Lauderdale, FL 33331            │
+│   - 8260 NW 70th St, Tamarac, FL 33321                       │
+│ PHOTOS         : [SEE ATTACHED]                              │
+└──────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────┐
+│                   EDUCATIONAL INFORMATION                    │
+├──────────────────────────────────────────────────────────────┤
+│ School Name    : Pembroke Pines Highschool                   │
+│ School Address : 17189 Sheridan St, Pembroke Pines, FL 33331 │
+│ School District: Broward County School District              │
+│ School Website : https://hs.pinescharter.net/                │
+│ School Phone  : +1 (954)-538-3700                            │
+│ Grades        : 9 - 12                                       │
+│ Status        : Incomplete                                   │
+│ Notes         : Daniel dropped out to focus on his FiveM     │
+│                 journey, which recently came to an end.      │
+└──────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────┐
+│                      HOUSE INFORMATION                       │
+├──────────────────────────────────────────────────────────────┤
+│ Picture       : https://maps.app.goo.gl/Q6QtMsV14CwEibLF9    │
+│ House Link    : https://maps.app.goo.gl/Q6QtMsV14CwEibLF9    │
+│ Bedrooms      : 4                                            │
+│ Bathrooms     : 2.5                                          │
+│ Stories       : 1                                            │
+│ Square Feet   : 3,320                                        │
+│ Year Built    : 1996                                         │
+│ Est. Value    : $1,216,000                                   │
+│ Est. Equity   : $310,572                                     │
+│ Last Sale Amt : $280,200                                     │
+│ Last Sale Date: 08/30/2016                                   │
+│ Occupancy Type: Owner Occupied                               │
+│ Ownership Type: Related                                      │
+│ Land Use      : Single Family Residential                    │
+│ Property Class: Residential                                  │
+│ Subdivision   : Stoneridge Lake Estates Plat                 │
+│ Lot Sq. Feet  : 15,437                                       │
+│ APN           : 04-2021-031-8270                             │
+│ School District: Dade County School District                 │
+└──────────────────────────────────────────────────────────────┘
+
+
+</pre>`
+  }
+};
+
+function openPanel(id) {
+  document.getElementById("panelTitle").innerText = data[id].title;
+  document.getElementById("panelText").innerHTML = data[id].text;
+  document.getElementById("overlay").style.display = "flex";
+}
+
+function closePanel() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
